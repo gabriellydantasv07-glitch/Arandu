@@ -3,67 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Arandu">
-    
-    <link rel="apple-touch-icon" href="https://i.postimg.cc/wTyDbWnV/aranduu-ft.png">
-    <link rel="icon" type="image/png" href="https://i.postimg.cc/wTyDbWnV/aranduu-ft.png">
-
     <title>Arandu</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
-        /* --- Variáveis (Paleta Terrosa & Pastel Vivo) --- */
+        /* --- DESIGN PREMIUM MANTIDO --- */
         :root {
             --bg-cream: #FFFFFF; 
             --bg-paper: #FAFAF9;
-            
             --text-black: #4A3B32; 
             --text-dark: #6D5446;
             --text-light: #A1887F;
-
             --accent-primary: #D4A373; 
             --accent-secondary: #CCD5AE; 
 
-            /* Cores Pastel VIVAS para os Post-its */
             --pastel-yellow: #FFF59D; 
             --pastel-blue: #81D4FA;    
             --pastel-green: #A5D6A7;   
-            --pastel-pink: #F48FB1;    
-            --pastel-purple: #CE93D8; 
+            --pastel-pink: #F48FB1;
+            --pastel-purple: #CE93D8;
 
-            /* Ícones com Cores Naturais */
-            --icon-color-1: #8D6E63; 
-            --icon-color-2: #78909C; 
-            --icon-color-3: #AED581; 
-            --icon-color-4: #E57373; 
-
-            --shadow-soft: 0 10px 40px rgba(90, 80, 70, 0.08); 
+            --shadow-soft: 0 10px 30px rgba(90, 80, 70, 0.08); 
+            --shadow-deep: 0 15px 35px rgba(74, 59, 50, 0.12);
             --radius-pill: 50px;
             --radius-block: 24px;
         }
 
-        /* Reset Básico */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body, html { background-color: var(--bg-cream); color: var(--text-black); font-family: 'Lora', serif; height: 100%; overflow-x: hidden; }
 
-        /* Classes Utilitárias */
-        .text-black { color: var(--text-black) !important; }
-        .text-center { text-align: center; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-
-        /* Container Principal do App */
+        .hidden { display: none !important; }
+        
         #app-container { 
-            max-width: 480px; 
-            margin: 0 auto; 
-            min-height: 100vh; 
-            background-color: var(--bg-cream); 
-            box-shadow: 0 0 50px rgba(0,0,0,0.03); 
-            position: relative; 
-            padding-bottom: 30px; 
+            max-width: 480px; margin: 0 auto; min-height: 100vh; 
+            background-color: var(--bg-cream); position: relative; padding-bottom: 60px; 
         }
 
         /* Tipografia */
@@ -72,275 +47,196 @@
         .lora-italic { font-family: 'Lora', serif; font-style: italic; }
         .lora-small { font-size: 0.85rem; color: var(--text-light); }
 
-        /* --- Telas & Animações --- */
-        .screen { padding: 24px; padding-top: 40px; min-height: 100vh; animation: fadeIn 0.5s ease; }
-        .hidden { display: none !important; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        /* Animações */
+        .screen { padding: 24px; padding-top: 40px; min-height: 100vh; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- TELA INICIAL (SPLASH SCREEN) --- */
+        /* --- SPLASH SCREEN --- */
         #splash-screen.splash-center { 
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
             background: radial-gradient(circle at center, #FFFFFF 0%, #FAFAF5 100%); 
         }
-        .splash-content { display: flex; flex-direction: column; align-items: center; width: 100%; }
-
-        .logo-container { 
-            width: 300px; 
-            height: auto; 
-            margin-bottom: -90px; 
-            display: flex; align-items: center; justify-content: center; 
-            position: relative;
-            z-index: 1; 
-        }
-
-        .logo-img-splash { 
-            width: 100%; 
-            height: auto; 
-            display: block;
-            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.06)); 
-        }
-
-        .app-title { 
-            font-size: 3.5rem; 
-            color: var(--text-black); 
-            margin-top: 0; 
-            margin-bottom: 16px; 
-            letter-spacing: -1.5px; 
-            line-height: 1;
-            position: relative;
-            z-index: 10; 
-        }
-
+        .logo-container { width: 300px; margin-bottom: -60px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+        .logo-img-splash { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); }
+        .app-title { font-size: 3.5rem; color: var(--text-black); margin-bottom: 16px; letter-spacing: -1.5px; line-height: 1; position: relative; z-index: 10; }
         .poetic-intro { font-size: 1.1rem; line-height: 1.6; color: var(--text-light); margin-bottom: 48px; max-width: 320px; }
 
         /* Botões */
         .btn-primary { 
-            background-color: var(--accent-primary); color: #FFF; 
-            padding: 18px 56px; border-radius: var(--radius-pill); border: none; font-size: 1.1rem; cursor: pointer; 
-            box-shadow: 0 6px 20px rgba(212, 163, 115, 0.4); transition: transform 0.2s; font-weight: 600; letter-spacing: 0.5px; 
+            background-color: var(--accent-primary); color: #FFF; padding: 18px 56px; 
+            border-radius: var(--radius-pill); border: none; font-size: 1.1rem; font-weight: 600; cursor: pointer; 
+            box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4); 
         }
-        .btn-primary:hover { transform: scale(1.02); opacity: 0.95; }
-
         .icon-btn, .icon-btn-small { 
             background: var(--bg-paper); color: var(--accent-secondary); border-radius: 50%; border: none; 
-            display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft); cursor: pointer; transition: color 0.2s; 
+            display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft); cursor: pointer; 
         }
-        .icon-btn:hover, .icon-btn-small:hover { color: var(--accent-primary); }
         .icon-btn { width: 48px; height: 48px; font-size: 22px; }
         .icon-btn-small { width: 36px; height: 36px; font-size: 18px; color: var(--text-light); }
 
-        /* --- HEADER PRINCIPAL --- */
-        .main-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 32px; 
-            height: 60px; 
-        }
-
-        .header-branding { 
-            flex-grow: 1; 
-            display:flex; 
-            flex-direction:column; 
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-img-header { 
-            width: 260px; 
-            max-width: 90%; 
-            height: auto; 
-            display: block; 
-        }
-
-        /* Títulos de seção */
+        /* HEADER */
+        .main-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; height: 60px; }
+        .logo-img-header { width: 260px; max-width: 90%; height: auto; display:block; margin: 0 auto;}
+        
         .section-header.with-spacing { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-right: 8px; }
-        .section-title { font-size: 1.4rem; color: var(--text-black); }
+        .section-title { font-size: 1.5rem; color: var(--text-black); }
         .section-subtitle { font-size: 1.1rem; color: var(--text-light); }
-        .big-sub-title { font-size: 1.6rem; }
-        .sub-header, .writing-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        .big-sub-title { font-size: 1.8rem; }
+        .sub-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
 
-        /* --- Busca e Resultados --- */
+        /* BUSCA */
         .search-container { position: relative; margin-bottom: 40px; z-index: 10; }
         .search-bar { 
-            display: flex; align-items: center; background: var(--bg-paper); padding: 14px 24px; 
-            border-radius: var(--radius-pill); box-shadow: var(--shadow-soft); border: 1px solid #F0F0F0; transition: border 0.3s; 
+            display: flex; align-items: center; background: var(--bg-paper); padding: 16px 24px; 
+            border-radius: var(--radius-pill); box-shadow: var(--shadow-soft); border: 1px solid #F0F0F0; 
         }
-        .search-bar:focus-within { border-color: var(--accent-secondary); }
-        .search-icon { color: var(--text-light); margin-right: 12px; font-size: 20px;}
-        #search-input { border: none; outline: none; width: 100%; font-size: 1rem; color: var(--text-black); background: transparent; }
-        #search-input::placeholder { color: #D7CCC8; }
-
+        #search-input { border: none; outline: none; width: 100%; font-size: 1rem; background: transparent; color: var(--text-black); }
         #search-results { 
-            background: var(--bg-paper); margin-top: 12px; border-radius: 20px; padding: 16px; 
-            box-shadow: var(--shadow-soft); position: absolute; width: 100%; max-height: 250px; overflow-y: auto; 
+            background: var(--bg-paper); margin-top: 12px; border-radius: 24px; padding: 16px; 
+            box-shadow: var(--shadow-deep); position: absolute; width: 100%; max-height: 300px; overflow-y: auto; z-index: 150;
         }
-        .search-result-item { padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.04); cursor: pointer; transition: background 0.2s; }
-        .search-result-item:hover { background-color: #FAFAFA; }
-        .search-result-title { font-weight: 600; font-size: 1rem; display: block; margin-bottom: 4px;}
-        .search-snippet { font-size: 0.85rem; color: var(--text-dark); font-style: italic; display: block; margin-bottom: 6px; line-height: 1.4;}
-        .search-match-path { font-size: 0.75rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.5px; }
+        .search-result-item { padding: 14px; border-bottom: 1px solid rgba(0,0,0,0.06); cursor: pointer; display: flex; flex-direction: column; gap: 4px; }
+        .search-result-title { font-weight: 700; font-size: 1rem; color: var(--text-black); }
+        .search-snippet { font-size: 0.9rem; color: var(--text-dark); font-style: italic; }
+        .highlight-match { background-color: var(--pastel-yellow); color: var(--text-black); padding: 0 4px; border-radius: 4px; font-weight: bold;}
 
-        /* --- MURAL (Post-its) --- */
-        .mural-scroll-container { display: flex; overflow-x: auto; padding: 10px 8px 24px 8px; gap: 16px; scrollbar-width: none; }
+        /* MURAL */
+        .mural-scroll-container { display: flex; overflow-x: auto; padding: 10px 8px 30px 8px; gap: 16px; scrollbar-width: none; }
         .post-it { 
             min-width: 180px; height: 180px; padding: 24px; border-radius: 4px 4px 24px 4px; 
-            position: relative; font-size: 1rem; line-height: 1.5; color: #3E2723; 
-            box-shadow: 2px 6px 15px rgba(0,0,0,0.1); transition: all 0.3s ease; 
+            position: relative; font-size: 1.1rem; line-height: 1.5; color: #3E2723; 
+            box-shadow: 2px 8px 20px rgba(0,0,0,0.1); 
         }
-
         .post-it:nth-child(4n+1) { background-color: var(--pastel-yellow); transform: rotate(-1.5deg); }
         .post-it:nth-child(4n+2) { background-color: var(--pastel-blue); transform: rotate(1.5deg); }
         .post-it:nth-child(4n+3) { background-color: var(--pastel-green); transform: rotate(-1deg); }
         .post-it:nth-child(4n+4) { background-color: var(--pastel-pink); transform: rotate(2deg); }
-        .post-it:nth-child(5n)   { background-color: var(--pastel-purple); transform: rotate(-2deg); }
+        .delete-postit-btn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.6); border: none; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #D32F2F; }
 
-        .post-it:hover { transform: rotate(0) scale(1.03) translateY(-5px) !important; z-index: 5; box-shadow: 4px 10px 25px rgba(0,0,0,0.15); }
-        .post-it p { outline: none; height: 100%; overflow-y: auto; }
-
-        .delete-postit-btn { 
-            position: absolute; top: 8px; right: 8px; 
-            background: rgba(255,255,255,0.5); border: none; border-radius: 50%; width: 28px; height: 28px; 
-            display: flex; align-items: center; justify-content: center; cursor: pointer; color: #D32F2F; font-size: 16px; 
-            opacity: 0; transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .post-it:hover .delete-postit-btn { opacity: 1; transform: scale(1.1); }
-        .delete-postit-btn:hover { background: #FFF; color: #B71C1C; }
-
-        /* --- Blocos e Listas --- */
-        .blocks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 50px;}
+        /* BLOCOS */
+        .blocks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 50px;}
         .study-block { 
-            background: var(--bg-paper); padding: 24px 20px; border-radius: var(--radius-block); text-align: center; cursor: pointer; 
-            box-shadow: var(--shadow-soft); display: flex; flex-direction: column; align-items: center; position: relative; 
-            transition: transform 0.2s, box-shadow 0.2s; border: 1px solid rgba(0,0,0,0.03);
+            background: var(--bg-paper); padding: 24px 20px; border-radius: var(--radius-block); 
+            text-align: center; cursor: pointer; 
+            box-shadow: var(--shadow-deep); border: 1px solid rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            gap: 16px; height: 160px; position: relative; 
         }
-        .study-block:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
-        .block-icon { font-size: 38px; margin-bottom: 14px; transition: color 0.3s;}
+        .block-icon { font-size: 42px; }
+        .study-block:nth-child(4n+1) .block-icon { color: #8D6E63; }
+        .study-block:nth-child(4n+2) .block-icon { color: #78909C; }
+        .study-block:nth-child(4n+3) .block-icon { color: #AED581; }
+        .study-block:nth-child(4n+4) .block-icon { color: #E57373; }
+        .delete-block-btn { position: absolute; top: 12px; right: 12px; color: #E57373; font-size: 20px; padding: 4px; opacity: 0.4; }
+        .add-block-placeholder { border: 2px dashed var(--text-light); background: transparent; box-shadow: none; }
 
-        .study-block:nth-child(4n+1) .block-icon { color: var(--icon-color-1); }
-        .study-block:nth-child(4n+2) .block-icon { color: var(--icon-color-2); }
-        .study-block:nth-child(4n+3) .block-icon { color: var(--icon-color-3); }
-        .study-block:nth-child(4n+4) .block-icon { color: var(--icon-color-4); }
-
-        .delete-block-btn { position: absolute; top: 12px; right: 12px; color: #E57373; font-size: 20px; padding: 4px; z-index: 2; opacity: 0.3; transition: opacity 0.2s; }
-        .delete-block-btn:hover { opacity: 1; }
-        .add-block-placeholder { border: 2px dashed var(--text-light); background: transparent; box-shadow: none; color: var(--text-light); }
-        .add-block-placeholder .block-icon { color: var(--text-light) !important; opacity: 0.6; }
-
-        .list-container { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
+        /* LISTAS */
+        .list-container { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
         .folder-item { 
-            background: var(--bg-paper); padding: 18px 24px; border-radius: 18px; box-shadow: var(--shadow-soft); 
-            display: flex; justify-content: space-between; align-items: center; cursor: pointer; color: var(--text-black); 
-            font-size: 1.05rem; transition: transform 0.2s, box-shadow 0.2s; 
+            background: var(--bg-paper); padding: 20px 24px; border-radius: 20px; 
+            box-shadow: var(--shadow-deep); border: 1px solid rgba(0,0,0,0.04); 
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 1.1rem;
         }
-        .folder-item:hover { transform: translateX(4px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
-        .folder-item i { color: var(--accent-secondary); }
+        .delete-item-btn { background: transparent; border: none; color: #E57373; font-size: 20px; padding: 8px; }
 
-        .delete-item-btn {
-            background: transparent; border: none; color: #E57373; font-size: 18px; cursor: pointer; padding: 8px;
-            border-radius: 50%; transition: background 0.2s, color 0.2s; display: flex; align-items: center; justify-content: center; margin-left: 10px;
+        /* --- TELA DE ESCRITA --- */
+        .writing-container { display: flex; flex-direction: column; height: 100vh; padding-top: 20px; }
+        .writing-header { display: flex; justify-content: space-between; align-items: center; padding: 0 24px 10px 24px; }
+
+        /* Toolbar Topo */
+        .top-toolbar {
+            display: flex; justify-content: space-evenly; align-items: center;
+            background-color: var(--bg-paper); padding: 14px; margin: 0 16px 20px 16px;
+            border-radius: 20px; box-shadow: var(--shadow-soft); z-index: 50; position: sticky; top: 0;
         }
-        .delete-item-btn:hover { background-color: #FFEBEE; color: #D32F2F; }
+        .toolbar-btn {
+            background: transparent; border: none; color: var(--text-light);
+            font-size: 24px; width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+        .toolbar-btn.active { background-color: var(--pastel-yellow); color: var(--text-black); }
+        .speed-indicator { font-size: 1rem; font-weight: 700; }
 
-        /* --- ÁREA DE ESCRITA & RICOS (NOVO) --- */
+        .paper-wrapper {
+            flex-grow: 1; position: relative; margin: 0 20px 20px 20px;
+            overflow: hidden; display: flex; flex-direction: column; cursor: text;
+        }
+
+        /* EDITOR */
         #writing-area { 
-            width: 100%; 
-            height: 68vh; 
-            border: none; 
-            outline: none; 
-            background: transparent; 
-            font-size: 1.15rem; 
-            line-height: 1.8; 
-            color: var(--text-black); 
-            padding: 10px; 
-            overflow-y: auto;
-            white-space: pre-wrap; /* Mantém parágrafos */
+            flex-grow: 1; width: 100%; border: none; outline: none; background: transparent; 
+            font-size: 1.3rem; line-height: 1.9; color: var(--text-black); 
+            overflow-y: auto; white-space: pre-wrap; padding-bottom: 80px; 
+            position: relative; z-index: 5; 
         }
+        #placeholder-text { pointer-events: none; opacity: 0.5; position: absolute; top: 0; left: 0; z-index: 0; font-size: 1.3rem; }
 
-        /* Esconde o placeholder quando tem texto */
-        #writing-area:not(:empty) + #placeholder-text { display: none; }
-
-        /* Estilo do LINK DENTRO DO TEXTO */
-        #writing-area a {
-            color: #0288D1; /* Azul bonito */
-            text-decoration: underline;
-            font-weight: bold;
-            cursor: pointer;
+        /* Corretor Sutil */
+        .custom-error { border-bottom: 2px dotted #E57373; cursor: pointer; }
+        .correction-tooltip {
+            position: absolute; background-color: var(--text-black); color: #FFF;
+            padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); animation: fadeIn 0.2s ease; cursor: pointer;
         }
+        .correction-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: var(--text-black) transparent transparent transparent; }
 
-        .floating-actions-container { position: fixed; bottom: 35px; right: 28px; display: flex; flex-direction: column-reverse; gap: 14px; z-index: 50; }
-        .fab-btn { 
-            width: 60px; height: 60px; border-radius: 50%; background: var(--accent-primary); color: white; 
-            font-size: 26px; box-shadow: 0 6px 20px rgba(180, 150, 130, 0.4); cursor: pointer; border: none; transition: transform 0.2s; 
-            display: flex; align-items: center; justify-content: center;
-        }
-        .fab-btn:hover { transform: scale(1.08); opacity: 0.95; }
-        .fab-btn:nth-child(n+2) { width: 50px; height: 50px; background: var(--bg-paper); color: var(--accent-primary); font-size: 22px; box-shadow: var(--shadow-soft);}
-
-        /* Modal Manual */
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(93, 64, 55, 0.4); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
-        .modal-book { background: var(--bg-paper); width: 100%; max-width: 380px; padding: 32px; border-radius: var(--radius-block); max-height: 85vh; display: flex; flex-direction: column; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-        .modal-header h4 { font-size: 1.5rem; color: var(--accent-primary); }
-        .modal-body { overflow-y: auto; flex-grow: 1; margin: 24px 0; color: var(--text-dark); font-size: 1rem; line-height: 1.7;}
-        .modal-body p { margin-bottom: 16px; }
+        /* Manual */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(93, 64, 55, 0.4); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
+        .modal-book { background: var(--bg-paper); width: 100%; max-width: 380px; padding: 32px; border-radius: 24px; max-height: 85vh; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+        .modal-body { overflow-y: auto; flex-grow: 1; margin: 24px 0; color: var(--text-dark); font-size: 1.1rem; line-height: 1.7;}
         .modal-paginator { padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; }
-        .modal-paginator span { color: var(--text-light); font-weight: 600; }
-        .main-footer { text-align: center; margin-top: auto; padding: 24px; opacity: 0.8; color: var(--text-light); }
+        .main-footer { text-align: center; padding: 24px; opacity: 0.8; color: var(--text-light); margin-top: auto; }
     </style>
 </head>
 <body>
 
 <main id="app-container">
+    
     <section id="splash-screen" class="screen active-screen splash-center">
-        <div class="splash-content">
-            <div class="logo-container mx-auto">
-                <img src="https://i.postimg.cc/4dDyfVJp/Gemini-Generated-Image-ilnjhrilnjhrilnj-removebg-preview.png" alt="Logo Arandu" class="logo-img-splash">
-            </div>
-            <h1 class="app-title playfair text-black">Arandu</h1>
-            <div class="poetic-intro lora">
-                <p>Bem-vindo(a)!</p>
-                <p>Toda árvore alta precisa de raízes profundas. No Arandu, você planta sua dedicação e colhe conhecimento.</p>
-            </div>
-            <button id="btn-enter" class="btn-primary rounded-btn">SEMEAR</button>
+        <div class="logo-container mx-auto">
+            <img src="https://i.postimg.cc/4dDyfVJp/Gemini-Generated-Image-ilnjhrilnjhrilnj-removebg-preview.png" alt="Logo Arandu" class="logo-img-splash">
         </div>
+        <h1 class="app-title playfair text-center">Arandu</h1>
+        <div class="poetic-intro lora">
+            <p>Bem-vindo(a)!</p>
+            <p>Toda árvore alta precisa de raízes profundas. No Arandu, você planta sua dedicação e colhe conhecimento.</p>
+        </div>
+        <button id="btn-enter" class="btn-primary">SEMEAR</button>
     </section>
 
     <section id="main-screen" class="screen hidden">
-        <header class="main-header centered-header">
+        <header class="main-header">
             <div style="width: 44px;"></div> 
-            
-            <div class="header-branding text-center">
-                <img src="https://i.postimg.cc/PqDBGwFg/Gemini-Generated-Image-adjkvdadjkvdadjk-removebg-preview-(1).png" alt="Arandu Logo" class="logo-img-header">
+            <div style="flex-grow:1; text-align:center;">
+                <img src="https://i.postimg.cc/PqDBGwFg/Gemini-Generated-Image-adjkvdadjkvdadjk-removebg-preview-(1).png" alt="Logo" class="logo-img-header">
             </div>
-            <button id="btn-planet" class="icon-btn floating-icon" aria-label="Abrir manual"><i class="ph ph-planet"></i></button>
+            <button id="btn-planet" class="icon-btn"><i class="ph ph-planet"></i></button>
         </header>
 
         <div class="search-container">
-            <div class="search-bar pill-shape">
-                <i class="ph ph-magnifying-glass search-icon"></i>
+            <div class="search-bar">
+                <i class="ph ph-magnifying-glass" style="margin-right:10px; color:var(--text-light); font-size: 20px;"></i>
                 <input type="text" placeholder="Vasculhar o acervo..." id="search-input" class="lora">
             </div>
-            <div id="search-results" class="hidden scrollable-results"></div>
+            <div id="search-results" class="hidden"></div>
         </div>
 
-        <section class="mural-section">
+        <section>
             <div class="section-header with-spacing">
                 <h3 class="playfair text-black section-title">Mural de Lembretes</h3>
-                <button id="btn-add-postit" class="icon-btn-small add-btn"><i class="ph ph-plus"></i></button>
+                <button id="btn-add-postit" class="icon-btn-small"><i class="ph ph-plus"></i></button>
             </div>
             <div class="mural-scroll-container" id="mural-container"></div>
         </section>
 
-        <section class="blocks-section">
+        <section style="margin-top: 40px;">
             <div class="section-header with-spacing">
                 <h3 class="playfair text-black section-title">Blocos de Estudo</h3>
             </div>
             <div class="blocks-grid" id="blocks-grid"></div>
         </section>
-
-        <footer class="main-footer lora-small text-center">
-            <p>Desenvolvido por @Dantas</p>
-        </footer>
+        
+        <footer class="main-footer lora-small">Desenvolvido por @Dantas</footer>
     </section>
 
     <section id="folders-screen" class="screen hidden">
@@ -373,33 +269,43 @@
         </div>
     </section>
 
-    <section id="writing-screen" class="screen hidden">
-        <header class="writing-header">
-            <button onclick="goBack('topics')" class="icon-btn"><i class="ph ph-arrow-left"></i></button>
-            <h3 id="writing-title" class="playfair text-black big-sub-title">Título</h3>
-            <div style="width: 44px;"></div>
-        </header>
-        
-        <div class="paper-container floating-paper">
-            <div id="writing-area" class="lora text-black" contenteditable="true" spellcheck="false"></div>
-            <span id="placeholder-text" class="lora-small" style="position:absolute; top:24px; left:24px; pointer-events:none; opacity:0.5;">Semeie suas ideias aqui...</span>
-        </div>
-        
-        <div class="floating-actions-container">
-            <button id="btn-tts-read" class="fab-btn"><i class="ph ph-speaker-high"></i></button>
-            <button id="btn-speed" class="fab-btn" style="font-size: 0.9rem; font-weight: 700;">1x</button>
-            <button id="btn-highlight" class="fab-btn" style="background-color: #FFF59D; color: #6D5446;"><i class="ph ph-highlighter"></i></button>
-            <button id="btn-insert-link" class="fab-btn"><i class="ph ph-link"></i></button>
+    <section id="writing-screen" class="screen hidden" style="padding: 0;">
+        <div class="writing-container">
+            <header class="writing-header">
+                <button onclick="goBack('topics')" class="icon-btn-small"><i class="ph ph-arrow-left"></i></button>
+                <h3 id="writing-title" class="playfair text-black big-sub-title" style="margin:0;">Título</h3>
+                <div style="width: 36px;"></div>
+            </header>
+
+            <div class="top-toolbar">
+                <button id="btn-highlight-toggle" class="toolbar-btn" title="Marca-Texto">
+                    <i class="ph ph-highlighter"></i>
+                </button>
+                <button id="btn-insert-link" class="toolbar-btn" title="Inserir Link">
+                    <i class="ph ph-link"></i>
+                </button>
+                <button id="btn-speed" class="toolbar-btn" title="Velocidade">
+                    <span class="speed-indicator">1x</span>
+                </button>
+                <button id="btn-tts-read" class="toolbar-btn" title="Ler Texto">
+                    <i class="ph ph-speaker-high"></i>
+                </button>
+            </div>
+            
+            <div class="paper-wrapper" id="paper-wrapper">
+                <div id="writing-area" class="lora text-black" contenteditable="true" spellcheck="false"></div>
+                <span id="placeholder-text" class="lora-small">Semeie suas ideias aqui...</span>
+            </div>
         </div>
     </section>
 
     <div id="manual-modal" class="modal-overlay hidden">
-        <div class="modal-book floating-paper rounded-block">
-            <header class="modal-header">
+        <div class="modal-book">
+            <header style="display:flex; justify-content:space-between; margin-bottom:20px;">
                 <h4 class="playfair text-black">Manual Arandu</h4>
                 <button id="btn-close-manual" class="icon-btn-small"><i class="ph ph-x"></i></button>
             </header>
-            <div id="manual-content" class="modal-body lora text-black"></div>
+            <div id="manual-content" class="lora modal-body" style="font-size: 1.1rem; line-height: 1.7;"></div>
             <footer class="modal-paginator">
                 <button id="btn-prev-page" class="icon-btn-small"><i class="ph ph-caret-left"></i></button>
                 <span id="page-indicator" class="lora-small">1 / 5</span>
@@ -410,432 +316,336 @@
 </main>
 
 <script>
-    /* --- SISTEMA DE ARMAZENAMENTO (PERSISTÊNCIA) --- */
-    const STORAGE_KEY = 'arandu_app_data_v3'; 
-
-    // Estrutura padrão inicial
+    /* --- SISTEMA (PERSISTÊNCIA GARANTIDA) --- */
+    const STORAGE_KEY = 'arandu_ultimate_v9_fixed_2'; 
     const defaultState = {
         blocks: [
             { name: "ENEM e Vestibulares", icon: "ph-book-open-text", folders: [] },
             { name: "Faculdade", icon: "ph-graduation-cap", folders: [] },
             { name: "Concursos", icon: "ph-bank", folders: [] }
-        ],
-        postIts: [], 
-        currentBlockIndex: null,
-        currentFolderIndex: null,
-        currentTopicIndex: null
+        ], postIts: [], currentBlockIndex: null, currentFolderIndex: null, currentTopicIndex: null
     };
+    
+    let appState = localStorage.getItem(STORAGE_KEY) ? JSON.parse(localStorage.getItem(STORAGE_KEY)) : defaultState;
+    function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); }
 
-    let appState = loadData();
-
-    function loadData() {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-            try {
-                return JSON.parse(saved);
-            } catch (e) {
-                console.error("Erro ao carregar, resetando...", e);
-                return JSON.parse(JSON.stringify(defaultState));
-            }
+    /* --- FECHAR TECLADO AO TOCAR FORA --- */
+    const appContainer = document.getElementById('app-container');
+    const closeKeyboard = (e) => {
+        const target = e.target;
+        const isEditable = target.isContentEditable || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA';
+        const isButton = target.closest('button') || target.closest('.icon-btn') || target.closest('.toolbar-btn');
+        if (!isEditable && !isButton) {
+            if(document.activeElement) document.activeElement.blur();
         }
-        return JSON.parse(JSON.stringify(defaultState));
-    }
-
-    function saveData() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
-    }
-
-    /* --- Navegação --- */
-    const screens = {
-        splash: document.getElementById('splash-screen'),
-        main: document.getElementById('main-screen'),
-        folders: document.getElementById('folders-screen'),
-        topics: document.getElementById('topics-screen'),
-        writing: document.getElementById('writing-screen')
     };
+    appContainer.addEventListener('mousedown', closeKeyboard);
+    appContainer.addEventListener('touchstart', closeKeyboard);
 
+    /* --- NAVEGAÇÃO --- */
+    const screens = { splash: document.getElementById('splash-screen'), main: document.getElementById('main-screen'), folders: document.getElementById('folders-screen'), topics: document.getElementById('topics-screen'), writing: document.getElementById('writing-screen') };
+    
     function showScreen(name) {
         Object.values(screens).forEach(s => s.classList.add('hidden'));
         screens[name].classList.remove('hidden');
-        document.getElementById('search-results').classList.add('hidden');
-        document.getElementById('search-input').value = '';
+        document.getElementById('search-results').classList.add('hidden'); 
         window.scrollTo(0,0);
     }
-
-    function goBack(target) {
-        showScreen(target);
+    
+    function goBack(target) { 
+        if(target === 'topics') saveData();
+        showScreen(target); 
     }
+    document.getElementById('btn-enter').onclick = () => { renderBlocks(); renderPostIts(); showScreen('main'); };
 
-    /* --- Inicialização --- */
-    document.getElementById('btn-enter').addEventListener('click', () => {
-        renderBlocks();
-        renderPostIts(); 
-        showScreen('main');
-    });
-
-    /* --- Lógica: BLOCOS --- */
+    /* --- RENDERIZADORES --- */
     function renderBlocks() {
-        const grid = document.getElementById('blocks-grid');
-        grid.innerHTML = '';
-        
-        appState.blocks.forEach((block, index) => {
-            const div = document.createElement('div');
-            div.className = 'study-block';
-            
-            const content = document.createElement('div');
-            content.style.width = '100%';
-            content.style.height = '100%';
-            content.innerHTML = `<i class="ph ${block.icon} block-icon"></i><br><span class="lora text-black" style="font-weight:500">${block.name}</span>`;
-            content.onclick = () => openBlock(index);
-            
-            const delBtn = document.createElement('i');
-            delBtn.className = 'ph ph-x-circle delete-block-btn';
-            delBtn.onclick = (e) => { e.stopPropagation(); deleteBlock(index); };
-            
-            div.appendChild(delBtn);
-            div.appendChild(content);
+        const grid = document.getElementById('blocks-grid'); grid.innerHTML = '';
+        appState.blocks.forEach((b, i) => {
+            const div = document.createElement('div'); div.className = 'study-block';
+            div.innerHTML = `<i class="ph ph-x-circle delete-block-btn"></i><i class="ph ${b.icon} block-icon"></i><span class="lora text-black" style="font-weight:600; font-size:1.1rem; line-height:1.2;">${b.name}</span>`;
+            div.onclick = (e) => { if(!e.target.classList.contains('delete-block-btn')) { appState.currentBlockIndex=i; document.getElementById('folder-block-title').innerText=b.name; renderFolders(); showScreen('folders'); }};
+            div.querySelector('.delete-block-btn').onclick = () => { if(confirm("Podar este galho?")) { appState.blocks.splice(i,1); saveData(); renderBlocks(); }};
             grid.appendChild(div);
         });
-
-        const addDiv = document.createElement('div');
-        addDiv.className = 'study-block add-block-placeholder';
-        addDiv.innerHTML = '<i class="ph ph-plus" style="font-size:36px"></i>';
-        addDiv.onclick = addNewBlock;
-        grid.appendChild(addDiv);
+        const add = document.createElement('div'); add.className = 'study-block add-block-placeholder';
+        add.innerHTML = '<i class="ph ph-plus" style="font-size:42px; opacity:0.5;"></i>';
+        add.onclick = () => { const n = prompt("Nome do Galho:"); if(n) { appState.blocks.push({name:n, icon:"ph-plant", folders:[]}); saveData(); renderBlocks(); }};
+        grid.appendChild(add);
     }
 
-    function addNewBlock() {
-        const name = prompt("Nome do novo Galho de Estudo:");
-        if(name) {
-            appState.blocks.push({ name: name, icon: "ph-plant", folders: [] });
-            saveData(); renderBlocks();
-        }
-    }
-
-    function deleteBlock(index) {
-        if(confirm("Podar este galho e todo seu conteúdo?")) {
-            appState.blocks.splice(index, 1);
-            saveData(); renderBlocks();
-        }
-    }
-
-    function openBlock(index) {
-        appState.currentBlockIndex = index;
-        document.getElementById('folder-block-title').innerText = appState.blocks[index].name;
-        renderFolders();
-        showScreen('folders');
-    }
-
-    /* --- Lógica: PASTAS --- */
     function renderFolders() {
-        const list = document.getElementById('folders-list');
-        const folders = appState.blocks[appState.currentBlockIndex].folders;
-        list.innerHTML = '';
-        
-        if(folders.length === 0) list.innerHTML = '<p class="lora-small text-center">Nenhuma matéria cultivada ainda.</p>';
-        
-        folders.forEach((folder, index) => {
-            const div = document.createElement('div');
-            div.className = 'folder-item';
-            
-            const contentDiv = document.createElement('div');
-            contentDiv.style.flexGrow = '1';
-            contentDiv.style.display = 'flex';
-            contentDiv.style.alignItems = 'center';
-            contentDiv.style.justifyContent = 'space-between';
-            contentDiv.innerHTML = `<span class="lora text-black">${folder.name}</span>`;
-            contentDiv.onclick = () => {
-                appState.currentFolderIndex = index;
-                document.getElementById('topic-folder-title').innerText = folder.name;
-                renderTopics();
-                showScreen('topics');
-            };
-
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'delete-item-btn';
-            deleteBtn.innerHTML = '<i class="ph ph-trash"></i>';
-            deleteBtn.onclick = (e) => { e.stopPropagation(); deleteFolder(index); };
-
-            div.appendChild(contentDiv);
-            div.appendChild(deleteBtn);
-            list.appendChild(div);
+        const list = document.getElementById('folders-list'); list.innerHTML = '';
+        appState.blocks[appState.currentBlockIndex].folders.forEach((f, i) => {
+            const el = document.createElement('div'); el.className = 'folder-item';
+            el.innerHTML = `<span>${f.name}</span><button class="delete-item-btn"><i class="ph ph-trash"></i></button>`;
+            el.onclick = (e) => { if(!e.target.closest('.delete-item-btn')){ appState.currentFolderIndex=i; document.getElementById('topic-folder-title').innerText=f.name; renderTopics(); showScreen('topics'); }};
+            el.querySelector('button').onclick = () => { if(confirm("Arrancar matéria?")) { appState.blocks[appState.currentBlockIndex].folders.splice(i,1); saveData(); renderFolders(); }};
+            list.appendChild(el);
         });
     }
+    document.getElementById('btn-add-folder').onclick = () => { const n = prompt("Nome da Matéria:"); if(n){ appState.blocks[appState.currentBlockIndex].folders.push({name:n, topics:[]}); saveData(); renderFolders(); }};
 
-    function deleteFolder(index) {
-        if(confirm("Arrancar esta matéria?")) {
-            appState.blocks[appState.currentBlockIndex].folders.splice(index, 1);
-            saveData(); renderFolders();
-        }
-    }
-
-    document.getElementById('btn-add-folder').addEventListener('click', () => {
-        const name = prompt("Nome da Matéria:");
-        if(name) {
-            appState.blocks[appState.currentBlockIndex].folders.push({ name: name, topics: [] });
-            saveData(); renderFolders();
-        }
-    });
-
-    /* --- Lógica: TÓPICOS --- */
     function renderTopics() {
-        const list = document.getElementById('topics-list');
-        const folder = appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex];
-        list.innerHTML = '';
-        
-        if(folder.topics.length === 0) list.innerHTML = '<p class="lora-small text-center">Nenhum tópico criado.</p>';
-        
-        folder.topics.forEach((topic, index) => {
-            const div = document.createElement('div');
-            div.className = 'folder-item';
-            
-            const contentDiv = document.createElement('div');
-            contentDiv.style.flexGrow = '1';
-            contentDiv.innerHTML = `<span class="lora text-black">${topic.name}</span>`;
-            contentDiv.onclick = () => {
-                appState.currentTopicIndex = index;
-                document.getElementById('writing-title').innerText = topic.name;
-                // Carrega o conteúdo HTML para manter cores e links
-                document.getElementById('writing-area').innerHTML = topic.content || "";
-                showScreen('writing');
-            };
-
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'delete-item-btn';
-            deleteBtn.innerHTML = '<i class="ph ph-trash"></i>';
-            deleteBtn.onclick = (e) => { e.stopPropagation(); deleteTopic(index); };
-
-            div.appendChild(contentDiv);
-            div.appendChild(deleteBtn);
-            list.appendChild(div);
+        const list = document.getElementById('topics-list'); list.innerHTML = '';
+        appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics.forEach((t, i) => {
+            const el = document.createElement('div'); el.className = 'folder-item';
+            el.innerHTML = `<span>${t.name}</span><button class="delete-item-btn"><i class="ph ph-trash"></i></button>`;
+            el.onclick = (e) => { if(!e.target.closest('.delete-item-btn')){ 
+                appState.currentTopicIndex=i; 
+                document.getElementById('writing-title').innerText=t.name; 
+                // CARREGA O CONTEÚDO SALVO
+                const content = t.content || "";
+                document.getElementById('writing-area').innerHTML = content;
+                togglePlaceholder(); 
+                showScreen('writing'); 
+            }};
+            el.querySelector('button').onclick = () => { if(confirm("Apagar tópico?")) { appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics.splice(i,1); saveData(); renderTopics(); }};
+            list.appendChild(el);
         });
     }
+    document.getElementById('btn-add-topic').onclick = () => { const n = prompt("Nome do Tópico:"); if(n){ appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics.push({name:n, content:""}); saveData(); renderTopics(); }};
 
-    function deleteTopic(index) {
-        const folder = appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex];
-        if(confirm("Apagar este tópico?")) {
-            folder.topics.splice(index, 1);
-            saveData(); renderTopics();
-        }
+    /* --- EDITOR & SALVAMENTO AUTOMÁTICO --- */
+    const wArea = document.getElementById('writing-area');
+    const placeholder = document.getElementById('placeholder-text');
+
+    function togglePlaceholder() {
+        placeholder.style.opacity = (wArea.innerText.trim().length > 0) ? '0' : '0.5';
     }
 
-    document.getElementById('btn-add-topic').addEventListener('click', () => {
-        const name = prompt("Nome do Tópico:");
-        if(name) {
-            const folder = appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex];
-            folder.topics.push({ name: name, content: "" });
-            saveData(); renderTopics();
+    wArea.addEventListener('input', () => {
+        togglePlaceholder();
+        if(appState.currentBlockIndex !== null) {
+            appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics[appState.currentTopicIndex].content = wArea.innerHTML;
+            saveData();
         }
     });
-    /* --- ESCRITA AVANÇADA (Marca-Texto & Links) --- */
-    const writingArea = document.getElementById('writing-area');
 
-    // 1. Salvar ao digitar (Salva o HTML para manter cores e links)
-    writingArea.addEventListener('input', (e) => {
-        const folder = appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex];
-        folder.topics[appState.currentTopicIndex].content = writingArea.innerHTML;
-        saveData(); 
-    });
-
-    // 2. BOTÃO MARCA-TEXTO (LIGA / DESLIGA)
-    document.getElementById('btn-highlight').addEventListener('click', () => {
-        const selection = window.getSelection();
-        if (!selection.rangeCount) return;
-
-        // Tenta detectar se já está amarelo
-        // O navegador retorna RGB, então comparamos com o RGB do nosso amarelo (#FFF59D)
-        const currentColor = document.queryCommandValue('backColor');
-
-        // Habilita CSS styling para garantir funcionamento
-        document.execCommand('styleWithCSS', false, true);
-
-        if (currentColor === 'rgb(255, 245, 157)') {
-            // Se já for amarelo, remove (pinta de transparente/branco)
-            document.execCommand('backColor', false, 'transparent');
-        } else {
-            // Se não, pinta de amarelo
+    /* --- MARCA-TEXTO (LÓGICA "HARD RESET" PARA iOS) --- */
+    let isHighlight = false;
+    const hBtn = document.getElementById('btn-highlight-toggle');
+    
+    hBtn.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        isHighlight = !isHighlight;
+        hBtn.classList.toggle('active', isHighlight);
+        
+        if (isHighlight) {
+            // LIGAR: Modo CSS para garantir a cor de fundo
+            document.execCommand('styleWithCSS', false, true);
             document.execCommand('backColor', false, '#FFF59D');
+        } else {
+            // DESLIGAR: A "Bomba Atômica" contra o bug do iOS
+            // 1. Tenta limpar normal
+            document.execCommand('styleWithCSS', false, true);
+            document.execCommand('backColor', false, 'rgba(0,0,0,0)');
+            document.execCommand('removeFormat', false, 'backColor');
+
+            // 2. Insere um elemento limpo forçado e move o cursor para dentro dele
+            // Isso impede que o navegador "herde" o estilo anterior
+            const id = "cursor-" + new Date().getTime();
+            document.execCommand('insertHTML', false, `<span id="${id}" style="background-color: transparent !important; color: inherit; text-decoration: none;">&#8203;</span>`);
+            
+            // 3. Limpa seleção
+            const span = document.getElementById(id);
+            if (span) {
+                const range = document.createRange();
+                range.setStart(span, 1); // Põe o cursor DEPOIS do caractere invisível
+                range.setEnd(span, 1);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                span.removeAttribute('id'); // Limpa ID
+            }
         }
-        writingArea.focus(); // Devolve o foco para o texto
+        wArea.focus();
     });
 
-    // 3. BOTÃO LINK (COM EMOJI)
-    document.getElementById('btn-insert-link').addEventListener('click', () => {
+    /* --- CORRETOR SUTIL (SEM NATIVO) --- */
+    const errorMap = {
+        "nao": "não", "voce": "você", "tambem": "também", "eh": "é", "entao": "então",
+        "esta": "está", "estao": "estão", "ja": "já", "ate": "até", "so": "só",
+        "concerteza": "com certeza", "pq": "porque", "vc": "você", "tmb": "também",
+        "dificil": "difícil", "facil": "fácil", "parabens": "parabéns", "ola": "olá"
+    };
+
+    wArea.addEventListener('click', (e) => {
+        const sel = window.getSelection();
+        if(sel.isCollapsed && sel.anchorNode.nodeType === 3) {
+            const text = sel.anchorNode.textContent;
+            const offset = sel.anchorOffset;
+            
+            let start = offset, end = offset;
+            while(start > 0 && /[\wáàãâéêíóôõúç]/i.test(text[start-1])) start--;
+            while(end < text.length && /[\wáàãâéêíóôõúç]/i.test(text[end])) end++;
+            
+            const word = text.slice(start, end).toLowerCase();
+            
+            if(errorMap[word]) {
+                const range = document.createRange();
+                range.setStart(sel.anchorNode, start);
+                range.setEnd(sel.anchorNode, end);
+                const rect = range.getBoundingClientRect();
+                
+                const tooltip = document.createElement('div');
+                tooltip.className = 'correction-tooltip';
+                tooltip.innerText = errorMap[word]; 
+                tooltip.style.top = (rect.top - 40) + 'px';
+                tooltip.style.left = rect.left + 'px';
+                
+                tooltip.onclick = (ev) => {
+                    ev.stopPropagation();
+                    const before = text.slice(0, start);
+                    const after = text.slice(end);
+                    sel.anchorNode.textContent = before + errorMap[word] + after;
+                    tooltip.remove();
+                    saveData();
+                };
+                
+                document.body.appendChild(tooltip);
+                
+                setTimeout(() => {
+                    document.addEventListener('click', function closer(ev2){
+                        if(ev2.target !== tooltip) { tooltip.remove(); document.removeEventListener('click', closer); }
+                    }, {once:true});
+                }, 100);
+            }
+        }
+    });
+
+    /* --- BUSCA --- */
+    document.getElementById('search-input').addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const res = document.getElementById('search-results');
+        
+        if(term.length < 2) { res.classList.add('hidden'); return; }
+        
+        res.innerHTML = ''; 
+        let foundAny = false;
+        
+        appState.blocks.forEach((b, bi) => b.folders.forEach((f, fi) => f.topics.forEach((t, ti) => {
+            const div = document.createElement('div');
+            div.innerHTML = t.content || "";
+            const cleanText = div.innerText; 
+            const lowerText = cleanText.toLowerCase();
+            
+            if(t.name.toLowerCase().includes(term) || lowerText.includes(term)) {
+                foundAny = true; 
+                res.classList.remove('hidden');
+                
+                const item = document.createElement('div'); 
+                item.className = 'search-result-item';
+                
+                let snippet = "Encontrado no título";
+                const index = lowerText.indexOf(term);
+                if(index >= 0) {
+                    const start = Math.max(0, index - 20);
+                    const end = Math.min(cleanText.length, index + term.length + 30);
+                    let rawSnippet = cleanText.slice(start, end);
+                    const regex = new RegExp(`(${term})`, 'gi');
+                    snippet = rawSnippet.replace(regex, '<span class="highlight-match">$1</span>');
+                    snippet = `...${snippet}...`;
+                }
+
+                item.innerHTML = `
+                    <span class="search-result-title">${t.name}</span>
+                    <span class="search-snippet">${snippet}</span>
+                `;
+                
+                item.onclick = () => { 
+                    appState.currentBlockIndex=bi; appState.currentFolderIndex=fi; appState.currentTopicIndex=ti; 
+                    document.getElementById('writing-title').innerText=t.name; 
+                    document.getElementById('writing-area').innerHTML=t.content; 
+                    togglePlaceholder();
+                    showScreen('writing'); 
+                };
+                res.appendChild(item);
+            }
+        })));
+        if(!foundAny) res.classList.add('hidden');
+    });
+
+    /* --- OUTRAS FUNÇÕES --- */
+    document.getElementById('btn-insert-link').onmousedown = (e) => {
+        e.preventDefault();
         const url = prompt("Cole o link aqui:");
-        if(url) {
-            // Insere um link que não é editável, para ficar como um "bloco"
-            const linkHTML = `&nbsp;<a href="${url}" target="_blank" contenteditable="false" style="color:#0288D1; text-decoration:underline; cursor:pointer;">🔗 Acessar Link</a>&nbsp;`;
-            document.execCommand('insertHTML', false, linkHTML);
-            writingArea.focus();
-        }
-    });
+        if(url) document.execCommand('insertHTML', false, `&nbsp;<a href="${url}" target="_blank" style="color:#0288D1;text-decoration:underline;">🔗 Link</a>&nbsp;`);
+    };
 
-    /* --- LEITURA BILINGUE & VELOCIDADE --- */
-    const synth = window.speechSynthesis;
-    let currentSpeed = 1.0; 
     const speedOptions = [1.0, 1.5, 0.8]; 
     const speedLabels = ['1x', '1.5x', '0.8x'];
     let speedIndex = 0;
-
-    document.getElementById('btn-speed').addEventListener('click', function() {
+    let currentSpeed = 1.0;
+    document.getElementById('btn-speed').onclick = function() {
         speedIndex = (speedIndex + 1) % speedOptions.length;
         currentSpeed = speedOptions[speedIndex];
-        this.innerText = speedLabels[speedIndex];
-        
-        if(synth.speaking) {
-            synth.cancel();
-            setTimeout(() => document.getElementById('btn-tts-read').click(), 200);
-        }
-    });
+        this.querySelector('span').innerText = speedLabels[speedIndex];
+    };
 
-    function detectLanguage(text) {
-        const lowerText = text.toLowerCase();
-        // Palavras-chave para detecção
-        const enWords = ['the', 'and', 'is', 'to', 'of', 'in', 'you', 'that', 'it', 'he'];
-        const ptWords = ['o', 'a', 'e', 'que', 'do', 'da', 'de', 'em', 'um', 'para'];
-        let enCount = 0;
-        let ptCount = 0;
-        
-        lowerText.split(/\s+/).forEach(word => {
-            const clean = word.replace(/[^\w]/g,"");
-            if(enWords.includes(clean)) enCount++;
-            if(ptWords.includes(clean)) ptCount++;
-        });
-        return enCount > ptCount ? 'en-US' : 'pt-BR';
-    }
-
+    const synth = window.speechSynthesis;
     let isSpeaking = false;
-    document.getElementById('btn-tts-read').addEventListener('click', function() {
-        // Lê apenas o texto puro (sem tags HTML)
-        const text = writingArea.innerText; 
-        if(!text || text.trim().length === 0) return alert("Nada para ler.");
-
-        const btn = this;
-
-        if(isSpeaking) {
-            synth.cancel();
-            isSpeaking = false;
-            btn.innerHTML = '<i class="ph ph-speaker-high"></i>';
-        } else {
-            const utterance = new SpeechSynthesisUtterance(text);
-            const lang = detectLanguage(text);
-            
-            utterance.lang = lang;
-            utterance.rate = currentSpeed; 
-            
-            // Busca voz aprimorada
-            const voices = synth.getVoices();
-            const voice = voices.find(v => v.lang.includes(lang) && (v.name.includes('Google') || v.name.includes('Microsoft')));
-            if(voice) utterance.voice = voice;
-
-            utterance.onend = () => {
-                isSpeaking = false;
-                btn.innerHTML = '<i class="ph ph-speaker-high"></i>';
-            };
-
-            synth.speak(utterance);
-            isSpeaking = true;
-            btn.innerHTML = '<i class="ph ph-stop-circle"></i>';
-        }
-    });
-
-    /* --- BUSCA (NOVA LÓGICA PARA HTML) --- */
-    document.getElementById('search-input').addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const resultsDiv = document.getElementById('search-results');
-        
-        if(term.length < 2) { resultsDiv.classList.add('hidden'); return; }
-        
-        let matches = [];
-        appState.blocks.forEach((block, bIdx) => {
-            block.folders.forEach((folder, fIdx) => {
-                folder.topics.forEach((topic, tIdx) => {
-                    // Cria elemento temporário para extrair texto puro do HTML
-                    const tempDiv = document.createElement('div');
-                    tempDiv.innerHTML = topic.content || "";
-                    const textContent = tempDiv.innerText.toLowerCase();
-                    
-                    if(topic.name.toLowerCase().includes(term) || textContent.includes(term)) {
-                        matches.push({
-                            title: topic.name, 
-                            path: `${block.name} > ${folder.name}`,
-                            b: bIdx, f: fIdx, t: tIdx
-                        });
-                    }
-                });
-            });
+    document.getElementById('btn-tts-read').onclick = function() {
+        if(isSpeaking) { synth.cancel(); isSpeaking = false; return; }
+        const text = wArea.innerText;
+        if(!text.trim()) return;
+        const utterance = new SpeechSynthesisUtterance(text);
+        const ptWords = ['o', 'a', 'e', 'que', 'do', 'da', 'para'];
+        const enWords = ['the', 'and', 'is', 'to', 'of', 'for'];
+        let scorePT = 0, scoreEN = 0;
+        text.toLowerCase().split(/\s+/).forEach(w => {
+            if(ptWords.includes(w)) scorePT++;
+            if(enWords.includes(w)) scoreEN++;
         });
-        
-        resultsDiv.innerHTML = '';
-        if(matches.length > 0) {
-            resultsDiv.classList.remove('hidden');
-            matches.forEach(match => {
-                const item = document.createElement('div');
-                item.className = 'search-result-item';
-                item.innerHTML = `<span class="search-result-title text-black">${match.title}</span><span class="search-match-path">${match.path}</span>`;
-                item.onclick = () => {
-                    appState.currentBlockIndex = match.b;
-                    appState.currentFolderIndex = match.f;
-                    appState.currentTopicIndex = match.t;
-                    document.getElementById('writing-title').innerText = match.title;
-                    document.getElementById('writing-area').innerHTML = appState.blocks[match.b].folders[match.f].topics[match.t].content;
-                    showScreen('writing');
-                };
-                resultsDiv.appendChild(item);
-            });
-        } else { resultsDiv.classList.add('hidden'); }
-    });
+        utterance.lang = (scoreEN > scorePT) ? 'en-US' : 'pt-BR';
+        utterance.rate = currentSpeed;
+        utterance.onend = () => isSpeaking = false;
+        synth.speak(utterance);
+        isSpeaking = true;
+    };
 
-    /* --- MURAL (Post-its) --- */
-    const muralContainer = document.getElementById('mural-container');
+    const mural = document.getElementById('mural-container');
     function renderPostIts() {
-        muralContainer.innerHTML = '';
-        if(!appState.postIts) appState.postIts = [];
-        appState.postIts.forEach((text, index) => createPostItDOM(text, index));
-    }
-
-    function createPostItDOM(text, index) {
-        const postit = document.createElement('div');
-        postit.className = 'post-it floating-paper';
-        postit.innerHTML = `<button class="delete-postit-btn"><i class="ph ph-x"></i></button><p contenteditable="true" class="lora text-black">${text}</p>`;
-        
-        postit.querySelector('p').addEventListener('input', (e) => {
-            appState.postIts[index] = e.target.innerText;
-            saveData();
+        mural.innerHTML = '';
+        (appState.postIts || []).forEach((txt, i) => {
+            const el = document.createElement('div'); el.className = 'post-it';
+            el.innerHTML = `<button class="delete-postit-btn"><i class="ph ph-x"></i></button><div contenteditable="true" class="lora text-black" style="outline:none; height:100%;">${txt}</div>`;
+            const editDiv = el.querySelector('div');
+            editDiv.oninput = (e) => { appState.postIts[i] = e.target.innerText; saveData(); };
+            el.querySelector('button').onclick = () => { appState.postIts.splice(i,1); saveData(); renderPostIts(); };
+            mural.prepend(el);
+            if(txt === "") { setTimeout(() => editDiv.focus(), 100); }
         });
-        postit.querySelector('.delete-postit-btn').onclick = () => {
-            appState.postIts.splice(index, 1);
-            saveData(); renderPostIts(); 
-        };
-        muralContainer.prepend(postit);
     }
+    document.getElementById('btn-add-postit').onclick = () => { appState.postIts.unshift(""); saveData(); renderPostIts(); };
 
-    document.getElementById('btn-add-postit').addEventListener('click', () => {
-        if(!appState.postIts) appState.postIts = [];
-        appState.postIts.unshift("Novo lembrete...");
-        saveData(); renderPostIts();
-    });
-
-    /* --- MANUAL (5 PÁGINAS COM DISCLAIMER) --- */
+    /* --- MANUAL ORIGINAL RESTAURADO + EMAIL FUNCIONANDO --- */
     const manualPages = [
         `<h5>Apresentação</h5><p>Saudações! O Arandu é o seu santuário de estudos. Doravante, cada pensamento transcrito é perenizado automaticamente.</p>`,
         `<h5>Organização</h5><p>Estruture seu saber em <b>Blocos</b>, <b>Matérias</b> e <b>Tópicos</b>. A arquitetura do app garante que nada se perca.</p>`,
         `<h5>Ferramentas</h5><p>Use a <b>Lupa</b> para buscar. Dentro do texto, encontre a opção de escuta nas opções PT/EN. Na escrita, use o <b>Marca-Texto</b> (selecione e clique para pintar/limpar) e insira <b>Links</b>.</p>`,
         `<h5>Responsabilidade</h5><p>O Arandu é um fiel depositário. A <b>veracidade</b> e precisão do conteúdo são de inteira incumbência do estudante. O app apenas preserva o que você planta.</p>`,
-        `<h5>Suporte</h5><p>Dúvidas ou feedback? Entre em contato conosco. <a href="mailto:gabrielly.dantastr@gmail.com" style="color:var(--accent-primary); font-weight:bold;">Enviar E-mail</a>.</p>`
+        `<h5>Suporte</h5><p>Dúvidas ou feedback? Entre em contato conosco. <a href="#" id="email-link" style="color:var(--accent-primary); font-weight:bold;">Enviar E-mail</a>.</p>`
     ];
-    let currentPage = 0;
-    function updateManual() {
-        document.getElementById('manual-content').innerHTML = manualPages[currentPage];
-        document.getElementById('page-indicator').innerText = `${currentPage + 1} / ${manualPages.length}`;
+    let pg = 0;
+    function updateManual(){ 
+        document.getElementById('manual-content').innerHTML = manualPages[pg]; 
+        document.getElementById('page-indicator').innerText = `${pg+1} / ${manualPages.length}`; 
+        
+        // Link de email forçado
+        const emailLink = document.getElementById('email-link');
+        if(emailLink) {
+            emailLink.onclick = (e) => {
+                e.preventDefault();
+                window.location.href = 'mailto:gabrielly.dantastr@gmail.com';
+            };
+        }
     }
-    document.getElementById('btn-planet').addEventListener('click', () => {
-        document.getElementById('manual-modal').classList.remove('hidden');
-        currentPage = 0; updateManual();
-    });
-    document.getElementById('btn-close-manual').addEventListener('click', () => document.getElementById('manual-modal').classList.add('hidden'));
-    document.getElementById('btn-next-page').addEventListener('click', () => { if(currentPage < manualPages.length - 1) { currentPage++; updateManual(); }});
-    document.getElementById('btn-prev-page').addEventListener('click', () => { if(currentPage > 0) { currentPage--; updateManual(); }});
+    document.getElementById('btn-planet').onclick = () => { document.getElementById('manual-modal').classList.remove('hidden'); pg=0; updateManual(); };
+    document.getElementById('btn-close-manual').onclick = () => document.getElementById('manual-modal').classList.add('hidden');
+    document.getElementById('btn-next-page').onclick = () => { if(pg<manualPages.length-1) { pg++; updateManual(); } };
+    document.getElementById('btn-prev-page').onclick = () => { if(pg>0) { pg--; updateManual(); } };
+
 </script>
 </body>
 </html>
