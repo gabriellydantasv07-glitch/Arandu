@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Arandu</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/6QywqgBK/IMG-7956.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/6QywqgBK/IMG-7956.png">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        /* --- DESIGN PREMIUM MANTIDO --- */
+        :root {
+            --bg-cream: #FFFFFF; 
+            --bg-paper: #FAFAF9;
+            --text-black: #4A3B32; 
+            --text-dark: #6D5446;
+            --text-light: #A1887F;
+            --accent-primary: #D4A373; 
+            --accent-secondary: #CCD5AE; 
+
+            --pastel-yellow: #FFF59D; 
+            --pastel-blue: #81D4FA;    
+            --pastel-green: #A5D6A7;   
+            --pastel-pink: #F48FB1;
+            --pastel-purple: #CE93D8;
+
+            --shadow-soft: 0 10px 30px rgba(90, 80, 70, 0.08); 
+            --shadow-deep: 0 15px 35px rgba(74, 59, 50, 0.12);
+            --radius-pill: 50px;
+            --radius-block: 24px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { background-color: var(--bg-cream); color: var(--text-black); font-family: 'Lora', serif; height: 100%; overflow-x: hidden; }
+
+        .hidden { display: none !important; }
+        
+        #app-container { 
+            max-width: 480px; margin: 0 auto; min-height: 100vh; 
+            background-color: var(--bg-cream); position: relative; padding-bottom: 60px; 
+        }
+
+        /* Tipografia */
+        .playfair { font-family: 'Playfair Display', serif; }
+        .lora { font-family: 'Lora', serif; }
+        .lora-italic { font-family: 'Lora', serif; font-style: italic; }
+        .lora-small { font-size: 0.85rem; color: var(--text-light); }
+
+        /* Animações */
+        .screen { padding: 24px; padding-top: 40px; min-height: 100vh; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- SPLASH SCREEN --- */
+        #splash-screen.splash-center { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+            background: radial-gradient(circle at center, #FFFFFF 0%, #FAFAF5 100%); 
+        }
+        .logo-container { width: 300px; margin-bottom: -60px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+        
+        /* FIX: Ajuste da imagem para garantir proporção correta no Splash também */
+        .logo-img-splash { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); }
+        
+        .app-title { font-size: 3.5rem; color: var(--text-black); margin-bottom: 16px; letter-spacing: -1.5px; line-height: 1; position: relative; z-index: 10; }
+        .poetic-intro { font-size: 1.1rem; line-height: 1.6; color: var(--text-light); margin-bottom: 48px; max-width: 320px; }
+
+        /* Botões */
+        .btn-primary { 
+            background-color: var(--accent-primary); color: #FFF; padding: 18px 56px; 
+            border-radius: var(--radius-pill); border: none; font-size: 1.1rem; font-weight: 600; cursor: pointer; 
+            box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4); 
+        }
+        .icon-btn, .icon-btn-small { 
+            background: var(--bg-paper); color: var(--accent-secondary); border-radius: 50%; border: none; 
+            display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft); cursor: pointer; 
+        }
+        .icon-btn { width: 48px; height: 48px; font-size: 22px; }
+        .icon-btn-small { width: 36px; height: 36px; font-size: 18px; color: var(--text-light); }
+
+        /* HEADER */
+        .main-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; height: 60px; }
+        .logo-img-header { width: 260px; max-width: 90%; height: auto; display:block; margin: 0 auto;}
+        
+        .section-header.with-spacing { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-right: 8px; }
+        .section-title { font-size: 1.5rem; color: var(--text-black); }
+        .section-subtitle { font-size: 1.1rem; color: var(--text-light); }
+        .big-sub-title { font-size: 1.8rem; }
+        .sub-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+
+        /* BUSCA */
+        .search-container { position: relative; margin-bottom: 40px; z-index: 10; }
+        .search-bar { 
+            display: flex; align-items: center; background: var(--bg-paper); padding: 16px 24px; 
+            border-radius: var(--radius-pill); box-shadow: var(--shadow-soft); border: 1px solid #F0F0F0; 
+        }
+        #search-input { border: none; outline: none; width: 100%; font-size: 1rem; background: transparent; color: var(--text-black); }
+        #search-results { 
+            background: var(--bg-paper); margin-top: 12px; border-radius: 24px; padding: 16px; 
+            box-shadow: var(--shadow-deep); position: absolute; width: 100%; max-height: 300px; overflow-y: auto; z-index: 150;
+        }
+        .search-result-item { padding: 14px; border-bottom: 1px solid rgba(0,0,0,0.06); cursor: pointer; display: flex; flex-direction: column; gap: 4px; }
+        .search-result-title { font-weight: 700; font-size: 1rem; color: var(--text-black); }
+        .search-snippet { font-size: 0.9rem; color: var(--text-dark); font-style: italic; }
+        .highlight-match { background-color: var(--pastel-yellow); color: var(--text-black); padding: 0 4px; border-radius: 4px; font-weight: bold;}
+
+        /* MURAL */
+        .mural-scroll-container { display: flex; overflow-x: auto; padding: 10px 8px 30px 8px; gap: 16px; scrollbar-width: none; }
+        .post-it { 
+            min-width: 180px; height: 180px; padding: 24px; border-radius: 4px 4px 24px 4px; 
+            position: relative; font-size: 1.1rem; line-height: 1.5; color: #3E2723; 
+            box-shadow: 2px 8px 20px rgba(0,0,0,0.1); 
+        }
+        .post-it:nth-child(4n+1) { background-color: var(--pastel-yellow); transform: rotate(-1.5deg); }
+        .post-it:nth-child(4n+2) { background-color: var(--pastel-blue); transform: rotate(1.5deg); }
+        .post-it:nth-child(4n+3) { background-color: var(--pastel-green); transform: rotate(-1deg); }
+        .post-it:nth-child(4n+4) { background-color: var(--pastel-pink); transform: rotate(2deg); }
+        .delete-postit-btn { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.6); border: none; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #D32F2F; }
+
+        /* BLOCOS */
+        .blocks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 50px;}
+        .study-block { 
+            background: var(--bg-paper); padding: 24px 20px; border-radius: var(--radius-block); 
+            text-align: center; cursor: pointer; 
+            box-shadow: var(--shadow-deep); border: 1px solid rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            gap: 16px; height: 160px; position: relative; 
+        }
+        .block-icon { font-size: 42px; }
+        .study-block:nth-child(4n+1) .block-icon { color: #8D6E63; }
+        .study-block:nth-child(4n+2) .block-icon { color: #78909C; }
+        .study-block:nth-child(4n+3) .block-icon { color: #AED581; }
+        .study-block:nth-child(4n+4) .block-icon { color: #E57373; }
+        .delete-block-btn { position: absolute; top: 12px; right: 12px; color: #E57373; font-size: 20px; padding: 4px; opacity: 0.4; }
+        .add-block-placeholder { border: 2px dashed var(--text-light); background: transparent; box-shadow: none; }
+
+        /* LISTAS */
+        .list-container { display: flex; flex-direction: column; gap: 16px; margin-top: 10px; }
+        .folder-item { 
+            background: var(--bg-paper); padding: 20px 24px; border-radius: 20px; 
+            box-shadow: var(--shadow-deep); border: 1px solid rgba(0,0,0,0.04); 
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 1.1rem;
+        }
+        .delete-item-btn { background: transparent; border: none; color: #E57373; font-size: 20px; padding: 8px; }
+
+        /* --- TELA DE ESCRITA --- */
+        .writing-container { display: flex; flex-direction: column; height: 100vh; padding-top: 20px; }
+        .writing-header { display: flex; justify-content: space-between; align-items: center; padding: 0 24px 10px 24px; }
+
+        /* Toolbar Topo */
+        .top-toolbar {
+            display: flex; justify-content: space-evenly; align-items: center;
+            background-color: var(--bg-paper); padding: 14px; margin: 0 16px 20px 16px;
+            border-radius: 20px; box-shadow: var(--shadow-soft); z-index: 50; position: sticky; top: 0;
+        }
+        .toolbar-btn {
+            background: transparent; border: none; color: var(--text-light);
+            font-size: 24px; width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+        .toolbar-btn.active { background-color: var(--pastel-yellow); color: var(--text-black); }
+        .speed-indicator { font-size: 1rem; font-weight: 700; }
+
+        .paper-wrapper {
+            flex-grow: 1; position: relative; margin: 0 20px 20px 20px;
+            overflow: hidden; display: flex; flex-direction: column; cursor: text;
+        }
+
+        /* EDITOR */
+        #writing-area { 
+            flex-grow: 1; width: 100%; border: none; outline: none; background: transparent; 
+            font-size: 1.3rem; line-height: 1.9; color: var(--text-black); 
+            overflow-y: auto; white-space: pre-wrap; padding-bottom: 80px; 
+            position: relative; z-index: 5; 
+        }
+        #placeholder-text { pointer-events: none; opacity: 0.5; position: absolute; top: 0; left: 0; z-index: 0; font-size: 1.3rem; }
+
+        /* Corretor Sutil */
+        .custom-error { border-bottom: 2px dotted #E57373; cursor: pointer; }
+        .correction-tooltip {
+            position: absolute; background-color: var(--text-black); color: #FFF;
+            padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); animation: fadeIn 0.2s ease; cursor: pointer;
+        }
+        .correction-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: var(--text-black) transparent transparent transparent; }
+
+        /* Manual */
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(93, 64, 55, 0.4); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
+        .modal-book { background: var(--bg-paper); width: 100%; max-width: 380px; padding: 32px; border-radius: 24px; max-height: 85vh; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
+        .modal-body { overflow-y: auto; flex-grow: 1; margin: 24px 0; color: var(--text-dark); font-size: 1.1rem; line-height: 1.7;}
+        .modal-paginator { padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; }
+        .main-footer { text-align: center; padding: 24px; opacity: 0.8; color: var(--text-light); margin-top: auto; }
+    </style>
+</head>
+<body>
+
+<main id="app-container">
+    
+    <section id="splash-screen" class="screen active-screen splash-center">
+        <div class="logo-container mx-auto">
+            <img src="https://i.postimg.cc/4dDyfVJp/Gemini-Generated-Image-ilnjhrilnjhrilnj-removebg-preview.png" alt="Logo Arandu" class="logo-img-splash">
+        </div>
+        <h1 class="app-title playfair text-center">Arandu</h1>
+        <div class="poetic-intro lora">
+            <p>Bem-vindo(a)!</p>
+            <p>Toda árvore alta precisa de raízes profundas. No Arandu, você planta sua dedicação e colhe conhecimento.</p>
+        </div>
+        <button id="btn-enter" class="btn-primary">SEMEAR</button>
+    </section>
+
+    <section id="main-screen" class="screen hidden">
+        <header class="main-header">
+            <div style="width: 44px;"></div> 
+            <div style="flex-grow:1; text-align:center;">
+                <img src="https://i.postimg.cc/PqDBGwFg/Gemini-Generated-Image-adjkvdadjkvdadjk-removebg-preview-(1).png" alt="Logo" class="logo-img-header">
+            </div>
+            <button id="btn-planet" class="icon-btn"><i class="ph ph-planet"></i></button>
+        </header>
+
+        <div class="search-container">
+            <div class="search-bar">
+                <i class="ph ph-magnifying-glass" style="margin-right:10px; color:var(--text-light); font-size: 20px;"></i>
+                <input type="text" placeholder="Vasculhar o acervo..." id="search-input" class="lora">
+            </div>
+            <div id="search-results" class="hidden"></div>
+        </div>
+
+        <section>
+            <div class="section-header with-spacing">
+                <h3 class="playfair text-black section-title">Mural de Lembretes</h3>
+                <button id="btn-add-postit" class="icon-btn-small"><i class="ph ph-plus"></i></button>
+            </div>
+            <div class="mural-scroll-container" id="mural-container"></div>
+        </section>
+
+        <section style="margin-top: 40px;">
+            <div class="section-header with-spacing">
+                <h3 class="playfair text-black section-title">Blocos de Estudo</h3>
+            </div>
+            <div class="blocks-grid" id="blocks-grid"></div>
+        </section>
+        
+        <footer class="main-footer lora-small">Desenvolvido por @Dantas</footer>
+    </section>
+
+    <section id="folders-screen" class="screen hidden">
+        <header class="sub-header">
+            <button onclick="goBack('main')" class="icon-btn"><i class="ph ph-arrow-left"></i></button>
+            <h3 id="folder-block-title" class="playfair text-black big-sub-title">Nome do Bloco</h3>
+            <div style="width: 44px;"></div>
+        </header>
+        <div class="sub-content">
+            <div class="section-header with-spacing">
+                <span class="lora-italic section-subtitle">Selecione uma matéria:</span>
+                <button id="btn-add-folder" class="icon-btn-small"><i class="ph ph-plus"></i></button>
+            </div>
+            <div class="list-container" id="folders-list"></div>
+        </div>
+    </section>
+
+    <section id="topics-screen" class="screen hidden">
+        <header class="sub-header">
+            <button onclick="goBack('folders')" class="icon-btn"><i class="ph ph-arrow-left"></i></button>
+            <h3 id="topic-folder-title" class="playfair text-black big-sub-title">Matéria</h3>
+            <div style="width: 44px;"></div>
+        </header>
+        <div class="sub-content">
+            <div class="section-header with-spacing">
+                <span class="lora-italic section-subtitle">Tópicos de estudo:</span>
+                <button id="btn-add-topic" class="icon-btn-small"><i class="ph ph-plus"></i></button>
+            </div>
+            <div class="list-container" id="topics-list"></div>
+        </div>
+    </section>
+
+    <section id="writing-screen" class="screen hidden" style="padding: 0;">
+        <div class="writing-container">
+            <header class="writing-header">
+                <button onclick="goBack('topics')" class="icon-btn-small"><i class="ph ph-arrow-left"></i></button>
+                <h3 id="writing-title" class="playfair text-black big-sub-title" style="margin:0;">Título</h3>
+                <div style="width: 36px;"></div>
+            </header>
+
+            <div class="top-toolbar">
+                <button id="btn-highlight-toggle" class="toolbar-btn" title="Marca-Texto">
+                    <i class="ph ph-highlighter"></i>
+                </button>
+                <button id="btn-insert-link" class="toolbar-btn" title="Inserir Link">
+                    <i class="ph ph-link"></i>
+                </button>
+                <button id="btn-speed" class="toolbar-btn" title="Velocidade">
+                    <span class="speed-indicator">1x</span>
+                </button>
+                <button id="btn-tts-read" class="toolbar-btn" title="Ler Texto">
+                    <i class="ph ph-speaker-high"></i>
+                </button>
+            </div>
+            
+            <div class="paper-wrapper" id="paper-wrapper">
+                <div id="writing-area" class="lora text-black" contenteditable="true" spellcheck="false"></div>
+                <span id="placeholder-text" class="lora-small">Semeie suas ideias aqui...</span>
+            </div>
+        </div>
+    </section>
+
+    <div id="manual-modal" class="modal-overlay hidden">
+        <div class="modal-book">
+            <header style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                <h4 class="playfair text-black">Manual Arandu</h4>
+                <button id="btn-close-manual" class="icon-btn-small"><i class="ph ph-x"></i></button>
+            </header>
+            <div id="manual-content" class="lora modal-body" style="font-size: 1.1rem; line-height: 1.7;"></div>
+            <footer class="modal-paginator">
+                <button id="btn-prev-page" class="icon-btn-small"><i class="ph ph-caret-left"></i></button>
+                <span id="page-indicator" class="lora-small">1 / 5</span>
+                <button id="btn-next-page" class="icon-btn-small"><i class="ph ph-caret-right"></i></button>
+            </footer>
+        </div>
+    </div>
+</main>
+
+<script>
+    /* --- SISTEMA (PERSISTÊNCIA GARANTIDA) --- */
+    const STORAGE_KEY = 'arandu_ultimate_v9_fixed_2'; 
+    const defaultState = {
+        blocks: [
+            { name: "ENEM e Vestibulares", icon: "ph-book-open-text", folders: [] },
+            { name: "Faculdade", icon: "ph-graduation-cap", folders: [] },
+            { name: "Concursos", icon: "ph-bank", folders: [] }
+        ], postIts: [], currentBlockIndex: null, currentFolderIndex: null, currentTopicIndex: null
+    };
+    
+    let appState = localStorage.getItem(STORAGE_KEY) ? JSON.parse(localStorage.getItem(STORAGE_KEY)) : defaultState;
+    function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(appState)); }
+
+    /* --- FECHAR TECLADO AO TOCAR FORA --- */
+    const appContainer = document.getElementById('app-container');
+    const closeKeyboard = (e) => {
+        const target = e.target;
+        const isEditable = target.isContentEditable || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA';
+        const isButton = target.closest('button') || target.closest('.icon-btn') || target.closest('.toolbar-btn');
+        if (!isEditable && !isButton) {
+            if(document.activeElement) document.activeElement.blur();
+        }
+    };
+    appContainer.addEventListener('mousedown', closeKeyboard);
+    appContainer.addEventListener('touchstart', closeKeyboard);
+
+    /* --- NAVEGAÇÃO --- */
+    const screens = { splash: document.getElementById('splash-screen'), main: document.getElementById('main-screen'), folders: document.getElementById('folders-screen'), topics: document.getElementById('topics-screen'), writing: document.getElementById('writing-screen') };
+    
+    function showScreen(name) {
+        Object.values(screens).forEach(s => s.classList.add('hidden'));
+        screens[name].classList.remove('hidden');
+        document.getElementById('search-results').classList.add('hidden'); 
+        window.scrollTo(0,0);
+    }
+    
+    function goBack(target) { 
+        if(target === 'topics') saveData();
+        showScreen(target); 
+    }
+    document.getElementById('btn-enter').onclick = () => { renderBlocks(); renderPostIts(); showScreen('main'); };
+
+    /* --- RENDERIZADORES --- */
+    function renderBlocks() {
+        const grid = document.getElementById('blocks-grid'); grid.innerHTML = '';
+        appState.blocks.forEach((b, i) => {
+            const div = document.createElement('div'); div.className = 'study-block';
+            div.innerHTML = `<i class="ph ph-x-circle delete-block-btn"></i><i class="ph ${b.icon} block-icon"></i><span class="lora text-black" style="font-weight:600; font-size:1.1rem; line-height:1.2;">${b.name}</span>`;
+            div.onclick = (e) => { if(!e.target.classList.contains('delete-block-btn')) { appState.currentBlockIndex=i; document.getElementById('folder-block-title').innerText=b.name; renderFolders(); showScreen('folders'); }};
+            div.querySelector('.delete-block-btn').onclick = () => { if(confirm("Podar este galho?")) { appState.blocks.splice(i,1); saveData(); renderBlocks(); }};
+            grid.appendChild(div);
+        });
+        const add = document.createElement('div'); add.className = 'study-block add-block-placeholder';
+        add.innerHTML = '<i class="ph ph-plus" style="font-size:42px; opacity:0.5;"></i>';
+        add.onclick = () => { const n = prompt("Nome do Galho:"); if(n) { appState.blocks.push({name:n, icon:"ph-plant", folders:[]}); saveData(); renderBlocks(); }};
+        grid.appendChild(add);
+    }
+
+    function renderFolders() {
+        const list = document.getElementById('folders-list'); list.innerHTML = '';
+        appState.blocks[appState.currentBlockIndex].folders.forEach((f, i) => {
+            const el = document.createElement('div'); el.className = 'folder-item';
+            el.innerHTML = `<span>${f.name}</span><button class="delete-item-btn"><i class="ph ph-trash"></i></button>`;
+            el.onclick = (e) => { if(!e.target.closest('.delete-item-btn')){ appState.currentFolderIndex=i; document.getElementById('topic-folder-title').innerText=f.name; renderTopics(); showScreen('topics'); }};
+            el.querySelector('button').onclick = () => { if(confirm("Arrancar matéria?")) { appState.blocks[appState.currentBlockIndex].folders.splice(i,1); saveData(); renderFolders(); }};
+            list.appendChild(el);
+        });
+    }
+    document.getElementById('btn-add-folder').onclick = () => { const n = prompt("Nome da Matéria:"); if(n){ appState.blocks[appState.currentBlockIndex].folders.push({name:n, topics:[]}); saveData(); renderFolders(); }};
+
+    function renderTopics() {
+        const list = document.getElementById('topics-list'); list.innerHTML = '';
+        appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics.forEach((t, i) => {
+            const el = document.createElement('div'); el.className = 'folder-item';
+            el.innerHTML = `<span>${t.name}</span><button class="delete-item-btn"><i class="ph ph-trash"></i></button>`;
+            el.onclick = (e) => { if(!e.target.closest('.delete-item-btn')){ 
+                appState.currentTopicIndex=i; 
+                document.getElementById('writing-title').innerText=t.name; 
+                // CARREGA O CONTEÚDO SALVO
+                const content = t.content || "";
+                document.getElementById('writing-area').innerHTML = content;
+                togglePlaceholder(); 
+                showScreen('writing'); 
+            }};
+            el.querySelector('button').onclick = () => { if(confirm("Apagar tópico?")) { appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics.splice(i,1); saveData(); renderTopics(); }};
+            list.appendChild(el);
+        });
+    }
+    document.getElementById('btn-add-topic').onclick = () => { const n = prompt("Nome do Tópico:"); if(n){ appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics.push({name:n, content:""}); saveData(); renderTopics(); }};
+
+    /* --- EDITOR & SALVAMENTO AUTOMÁTICO --- */
+    const wArea = document.getElementById('writing-area');
+    const placeholder = document.getElementById('placeholder-text');
+
+    function togglePlaceholder() {
+        placeholder.style.opacity = (wArea.innerText.trim().length > 0) ? '0' : '0.5';
+    }
+
+    wArea.addEventListener('input', () => {
+        togglePlaceholder();
+        if(appState.currentBlockIndex !== null) {
+            appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics[appState.currentTopicIndex].content = wArea.innerHTML;
+            saveData();
+        }
+    });
+
+    /* --- MARCA-TEXTO (LÓGICA "HARD RESET" PARA iOS) --- */
+    let isHighlight = false;
+    const hBtn = document.getElementById('btn-highlight-toggle');
+    
+    hBtn.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        isHighlight = !isHighlight;
+        hBtn.classList.toggle('active', isHighlight);
+        
+        if (isHighlight) {
+            // LIGAR: Modo CSS para garantir a cor de fundo
+            document.execCommand('styleWithCSS', false, true);
+            document.execCommand('backColor', false, '#FFF59D');
+        } else {
+            // DESLIGAR: A "Bomba Atômica" contra o bug do iOS
+            // 1. Tenta limpar normal
+            document.execCommand('styleWithCSS', false, true);
+            document.execCommand('backColor', false, 'rgba(0,0,0,0)');
+            document.execCommand('removeFormat', false, 'backColor');
+
+            // 2. Insere um elemento limpo forçado e move o cursor para dentro dele
+            // Isso impede que o navegador "herde" o estilo anterior
+            const id = "cursor-" + new Date().getTime();
+            document.execCommand('insertHTML', false, `<span id="${id}" style="background-color: transparent !important; color: inherit; text-decoration: none;">&#8203;</span>`);
+            
+            // 3. Limpa seleção
+            const span = document.getElementById(id);
+            if (span) {
+                const range = document.createRange();
+                range.setStart(span, 1); // Põe o cursor DEPOIS do caractere invisível
+                range.setEnd(span, 1);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                span.removeAttribute('id'); // Limpa ID
+            }
+        }
+        wArea.focus();
+    });
+
+    /* --- CORRETOR SUTIL (SEM NATIVO) --- */
+    const errorMap = {
+        "nao": "não", "voce": "você", "tambem": "também", "eh": "é", "entao": "então",
+        "esta": "está", "estao": "estão", "ja": "já", "ate": "até", "so": "só",
+        "concerteza": "com certeza", "pq": "porque", "vc": "você", "tmb": "também",
+        "dificil": "difícil", "facil": "fácil", "parabens": "parabéns", "ola": "olá"
+    };
+
+    wArea.addEventListener('click', (e) => {
+        const sel = window.getSelection();
+        if(sel.isCollapsed && sel.anchorNode.nodeType === 3) {
+            const text = sel.anchorNode.textContent;
+            const offset = sel.anchorOffset;
+            
+            let start = offset, end = offset;
+            while(start > 0 && /[\wáàãâéêíóôõúç]/i.test(text[start-1])) start--;
+            while(end < text.length && /[\wáàãâéêíóôõúç]/i.test(text[end])) end++;
+            
+            const word = text.slice(start, end).toLowerCase();
+            
+            if(errorMap[word]) {
+                const range = document.createRange();
+                range.setStart(sel.anchorNode, start);
+                range.setEnd(sel.anchorNode, end);
+                const rect = range.getBoundingClientRect();
+                
+                const tooltip = document.createElement('div');
+                tooltip.className = 'correction-tooltip';
+                tooltip.innerText = errorMap[word]; 
+                tooltip.style.top = (rect.top - 40) + 'px';
+                tooltip.style.left = rect.left + 'px';
+                
+                tooltip.onclick = (ev) => {
+                    ev.stopPropagation();
+                    const before = text.slice(0, start);
+                    const after = text.slice(end);
+                    sel.anchorNode.textContent = before + errorMap[word] + after;
+                    tooltip.remove();
+                    saveData();
+                };
+                
+                document.body.appendChild(tooltip);
+                
+                setTimeout(() => {
+                    document.addEventListener('click', function closer(ev2){
+                        if(ev2.target !== tooltip) { tooltip.remove(); document.removeEventListener('click', closer); }
+                    }, {once:true});
+                }, 100);
+            }
+        }
+    });
+
+    /* --- BUSCA --- */
+    document.getElementById('search-input').addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const res = document.getElementById('search-results');
+        
+        if(term.length < 2) { res.classList.add('hidden'); return; }
+        
+        res.innerHTML = ''; 
+        let foundAny = false;
+        
+        appState.blocks.forEach((b, bi) => b.folders.forEach((f, fi) => f.topics.forEach((t, ti) => {
+            const div = document.createElement('div');
+            div.innerHTML = t.content || "";
+            const cleanText = div.innerText; 
+            const lowerText = cleanText.toLowerCase();
+            
+            if(t.name.toLowerCase().includes(term) || lowerText.includes(term)) {
+                foundAny = true; 
+                res.classList.remove('hidden');
+                
+                const item = document.createElement('div'); 
+                item.className = 'search-result-item';
+                
+                let snippet = "Encontrado no título";
+                const index = lowerText.indexOf(term);
+                if(index >= 0) {
+                    const start = Math.max(0, index - 20);
+                    const end = Math.min(cleanText.length, index + term.length + 30);
+                    let rawSnippet = cleanText.slice(start, end);
+                    const regex = new RegExp(`(${term})`, 'gi');
+                    snippet = rawSnippet.replace(regex, '<span class="highlight-match">$1</span>');
+                    snippet = `...${snippet}...`;
+                }
+
+                item.innerHTML = `
+                    <span class="search-result-title">${t.name}</span>
+                    <span class="search-snippet">${snippet}</span>
+                `;
+                
+                item.onclick = () => { 
+                    appState.currentBlockIndex=bi; appState.currentFolderIndex=fi; appState.currentTopicIndex=ti; 
+                    document.getElementById('writing-title').innerText=t.name; 
+                    document.getElementById('writing-area').innerHTML=t.content; 
+                    togglePlaceholder();
+                    showScreen('writing'); 
+                };
+                res.appendChild(item);
+            }
+        })));
+        if(!foundAny) res.classList.add('hidden');
+    });
+
+    /* --- OUTRAS FUNÇÕES --- */
+    document.getElementById('btn-insert-link').onmousedown = (e) => {
+        e.preventDefault();
+        const url = prompt("Cole o link aqui:");
+        if(url) document.execCommand('insertHTML', false, `&nbsp;<a href="${url}" target="_blank" style="color:#0288D1;text-decoration:underline;">🔗 Link</a>&nbsp;`);
+    };
+
+    const speedOptions = [1.0, 1.5, 0.8]; 
+    const speedLabels = ['1x', '1.5x', '0.8x'];
+    let speedIndex = 0;
+    let currentSpeed = 1.0;
+    document.getElementById('btn-speed').onclick = function() {
+        speedIndex = (speedIndex + 1) % speedOptions.length;
+        currentSpeed = speedOptions[speedIndex];
+        this.querySelector('span').innerText = speedLabels[speedIndex];
+    };
+
+    const synth = window.speechSynthesis;
+    let isSpeaking = false;
+    document.getElementById('btn-tts-read').onclick = function() {
+        if(isSpeaking) { synth.cancel(); isSpeaking = false; return; }
+        const text = wArea.innerText;
+        if(!text.trim()) return;
+        const utterance = new SpeechSynthesisUtterance(text);
+        const ptWords = ['o', 'a', 'e', 'que', 'do', 'da', 'para'];
+        const enWords = ['the', 'and', 'is', 'to', 'of', 'for'];
+        let scorePT = 0, scoreEN = 0;
+        text.toLowerCase().split(/\s+/).forEach(w => {
+            if(ptWords.includes(w)) scorePT++;
+            if(enWords.includes(w)) scoreEN++;
+        });
+        utterance.lang = (scoreEN > scorePT) ? 'en-US' : 'pt-BR';
+        utterance.rate = currentSpeed;
+        utterance.onend = () => isSpeaking = false;
+        synth.speak(utterance);
+        isSpeaking = true;
+    };
+
+    const mural = document.getElementById('mural-container');
+    function renderPostIts() {
+        mural.innerHTML = '';
+        (appState.postIts || []).forEach((txt, i) => {
+            const el = document.createElement('div'); el.className = 'post-it';
+            el.innerHTML = `<button class="delete-postit-btn"><i class="ph ph-x"></i></button><div contenteditable="true" class="lora text-black" style="outline:none; height:100%;">${txt}</div>`;
+            const editDiv = el.querySelector('div');
+            editDiv.oninput = (e) => { appState.postIts[i] = e.target.innerText; saveData(); };
+            el.querySelector('button').onclick = () => { appState.postIts.splice(i,1); saveData(); renderPostIts(); };
+            mural.prepend(el);
+            if(txt === "") { setTimeout(() => editDiv.focus(), 100); }
+        });
+    }
+    document.getElementById('btn-add-postit').onclick = () => { appState.postIts.unshift(""); saveData(); renderPostIts(); };
+
+    /* --- MANUAL ORIGINAL RESTAURADO + EMAIL FUNCIONANDO --- */
+    const manualPages = [
+        `<h5>Apresentação</h5><p>Saudações! O Arandu é o seu santuário de estudos. Doravante, cada pensamento transcrito é perenizado automaticamente.</p>`,
+        `<h5>Organização</h5><p>Estruture seu saber em <b>Blocos</b>, <b>Matérias</b> e <b>Tópicos</b>. A arquitetura do app garante que nada se perca.</p>`,
+        `<h5>Ferramentas</h5><p>Use a <b>Lupa</b> para buscar. Dentro do texto, encontre a opção de escuta nas opções PT/EN. Na escrita, use o <b>Marca-Texto</b> (selecione e clique para pintar/limpar) e insira <b>Links</b>.</p>`,
+        `<h5>Responsabilidade</h5><p>O Arandu é um fiel depositário. A <b>veracidade</b> e precisão do conteúdo são de inteira incumbência do estudante. O app apenas preserva o que você planta.</p>`,
+        `<h5>Suporte</h5><p>Dúvidas ou feedback? Entre em contato conosco. <a href="#" id="email-link" style="color:var(--accent-primary); font-weight:bold;">Enviar E-mail</a>.</p>`
+    ];
+    let pg = 0;
+    function updateManual(){ 
+        document.getElementById('manual-content').innerHTML = manualPages[pg]; 
+        document.getElementById('page-indicator').innerText = `${pg+1} / ${manualPages.length}`; 
+        
+        // Link de email forçado
+        const emailLink = document.getElementById('email-link');
+        if(emailLink) {
+            emailLink.onclick = (e) => {
+                e.preventDefault();
+                window.location.href = 'mailto:gabrielly.dantastr@gmail.com';
+            };
+        }
+    }
+    document.getElementById('btn-planet').onclick = () => { document.getElementById('manual-modal').classList.remove('hidden'); pg=0; updateManual(); };
+    document.getElementById('btn-close-manual').onclick = () => document.getElementById('manual-modal').classList.add('hidden');
+    document.getElementById('btn-next-page').onclick = () => { if(pg<manualPages.length-1) { pg++; updateManual(); } };
+    document.getElementById('btn-prev-page').onclick = () => { if(pg>0) { pg--; updateManual(); } };
+
+</script>
+</body>
+</html>
