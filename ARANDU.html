@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Arandu</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/6QywqgBK/IMG-7956.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/6QywqgBK/IMG-7956.png">
+    
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -57,7 +61,10 @@
             background: radial-gradient(circle at center, #FFFFFF 0%, #FAFAF5 100%); 
         }
         .logo-container { width: 300px; margin-bottom: -60px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
+        
+        /* FIX: Ajuste da imagem para garantir proporção correta no Splash também */
         .logo-img-splash { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); }
+        
         .app-title { font-size: 3.5rem; color: var(--text-black); margin-bottom: 16px; letter-spacing: -1.5px; line-height: 1; position: relative; z-index: 10; }
         .poetic-intro { font-size: 1.1rem; line-height: 1.6; color: var(--text-light); margin-bottom: 48px; max-width: 320px; }
 
