@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Arandu</title>
+    <title>ARANDU</title>
     
-    <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/4dDyfVJp/Gemini-Generated-Image-ilnjhrilnjhrilnj-removebg-preview.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/4dDyfVJp/Gemini-Generated-Image-ilnjhrilnjhrilnj-removebg-preview.png">
     
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <style>
-        /* --- DESIGN PREMIUM MANTIDO (SEU CSS ORIGINAL) --- */
+        /* --- DESIGN PREMIUM --- */
         :root {
             --bg-cream: #FFFFFF; 
             --bg-paper: #FAFAF9;
@@ -52,45 +52,73 @@
         .lora-small { font-size: 0.85rem; color: var(--text-light); }
 
         /* Animações */
-        .screen { padding: 24px; padding-top: 40px; min-height: 100vh; animation: fadeIn 0.3s ease; }
+        .screen { padding: 24px; padding-top: 40px; min-height: 100vh; animation: fadeIn 0.4s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- SPLASH SCREEN --- */
-        #splash-screen.splash-center, #auth-screen.splash-center { 
+        #splash-screen.splash-center, #login-screen.splash-center { 
             display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
             background: radial-gradient(circle at center, #FFFFFF 0%, #FAFAF5 100%); 
         }
         .logo-container { width: 300px; margin-bottom: -60px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 1; }
         .logo-img-splash { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1)); }
         
-        .app-title { font-size: 3.5rem; color: var(--text-black); margin-bottom: 16px; letter-spacing: -1.5px; line-height: 1; position: relative; z-index: 10; }
+        .app-title { font-size: 3.5rem; color: var(--text-black); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1; line-height: 1; position: relative; z-index: 10; }
         .poetic-intro { font-size: 1.1rem; line-height: 1.6; color: var(--text-light); margin-bottom: 48px; max-width: 320px; }
-
-        /* TELA DE LOGIN (Estilo Minimalista Integrado) */
-        .auth-form { width: 100%; max-width: 300px; display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;}
-        .auth-input { 
-            padding: 16px 24px; border-radius: var(--radius-pill); border: 1px solid #E0E0E0; 
-            background: var(--bg-paper); font-family: 'Lora', serif; font-size: 1rem; outline: none;
-        }
-        .auth-error { color: #D32F2F; font-size: 0.9rem; margin-top: 10px; min-height: 20px;}
 
         /* Botões */
         .btn-primary { 
             background-color: var(--accent-primary); color: #FFF; padding: 18px 56px; 
             border-radius: var(--radius-pill); border: none; font-size: 1.1rem; font-weight: 600; cursor: pointer; 
             box-shadow: 0 8px 25px rgba(212, 163, 115, 0.4); 
+            transition: all 0.2s ease;
         }
-        .btn-outline {
-            background: transparent; border: 2px solid var(--accent-primary); color: var(--accent-primary);
-            padding: 16px 56px; border-radius: var(--radius-pill); font-size: 1rem; font-weight: 600; cursor: pointer;
-        }
-
+        .btn-primary:active { transform: scale(0.98); box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4); }
+        .btn-primary:disabled { background-color: #E0E0E0; cursor: not-allowed; box-shadow: none; }
+        
         .icon-btn, .icon-btn-small { 
             background: var(--bg-paper); color: var(--accent-secondary); border-radius: 50%; border: none; 
             display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-soft); cursor: pointer; 
         }
         .icon-btn { width: 48px; height: 48px; font-size: 22px; }
         .icon-btn-small { width: 36px; height: 36px; font-size: 18px; color: var(--text-light); }
+
+        /* --- LOGIN SCREEN (DESIGN ELEGANTE) --- */
+        .auth-card {
+            width: 100%; max-width: 340px;
+            display: flex; flex-direction: column; gap: 20px;
+            z-index: 20; position: relative;
+        }
+        .auth-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .auth-input {
+            width: 100%; padding: 18px 24px; padding-left: 50px;
+            border-radius: var(--radius-pill);
+            border: 1px solid transparent; 
+            background: var(--bg-paper);
+            font-family: 'Lora', serif; font-size: 1rem; outline: none;
+            box-shadow: var(--shadow-soft); color: var(--text-black);
+            transition: all 0.3s ease;
+        }
+        .auth-input:focus {
+            border-color: var(--accent-secondary);
+            background: #FFF;
+            box-shadow: var(--shadow-deep);
+        }
+        .input-icon {
+            position: absolute; left: 20px; top: 50%; transform: translateY(-50%);
+            color: var(--text-light); font-size: 1.2rem; pointer-events: none;
+        }
+        .auth-toggle-text { 
+            margin-top: 10px; font-size: 0.95rem; color: var(--text-dark); 
+            cursor: pointer; text-decoration: none; border-bottom: 1px dotted var(--accent-primary);
+            align-self: center;
+        }
+        .error-msg { 
+            color: #E57373; font-size: 0.9rem; margin-top: 5px; text-align: center; min-height: 20px; font-style: italic;
+        }
 
         /* HEADER */
         .main-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; height: 60px; }
@@ -189,68 +217,61 @@
         }
         #placeholder-text { pointer-events: none; opacity: 0.5; position: absolute; top: 0; left: 0; z-index: 0; font-size: 1.3rem; }
 
-        /* Corretor Sutil */
-        .custom-error { border-bottom: 2px dotted #E57373; cursor: pointer; }
-        .correction-tooltip {
-            position: absolute; background-color: var(--text-black); color: #FFF;
-            padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); animation: fadeIn 0.2s ease; cursor: pointer;
-        }
-        .correction-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: var(--text-black) transparent transparent transparent; }
-
         /* Manual */
         .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(93, 64, 55, 0.4); backdrop-filter: blur(3px); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
         .modal-book { background: var(--bg-paper); width: 100%; max-width: 380px; padding: 32px; border-radius: 24px; max-height: 85vh; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
         .modal-body { overflow-y: auto; flex-grow: 1; margin: 24px 0; color: var(--text-dark); font-size: 1.1rem; line-height: 1.7;}
         .modal-paginator { padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.06); display: flex; justify-content: space-between; align-items: center; }
         .main-footer { text-align: center; padding: 24px; opacity: 0.8; color: var(--text-light); margin-top: auto; }
-        
-        #loading-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(255,255,255,0.8); z-index: 9999; 
-            display: flex; justify-content: center; align-items: center; font-size: 2rem; color: var(--accent-primary);
-        }
     </style>
 </head>
 <body>
 
-<div id="loading-overlay" class="hidden"><i class="ph ph-spinner ph-spin"></i></div>
-
 <main id="app-container">
     
-    <section id="auth-screen" class="screen splash-center">
+    <section id="splash-screen" class="screen active-screen splash-center">
         <div class="logo-container mx-auto">
             <img src="https://i.postimg.cc/4dDyfVJp/Gemini-Generated-Image-ilnjhrilnjhrilnj-removebg-preview.png" alt="Logo Arandu" class="logo-img-splash">
         </div>
         <h1 class="app-title playfair text-center">Arandu</h1>
         <div class="poetic-intro lora">
-            <p>Seus pensamentos, em qualquer lugar.</p>
-        </div>
-        
-        <div class="auth-form">
-            <input type="email" id="email-input" class="auth-input" placeholder="E-mail">
-            <input type="password" id="password-input" class="auth-input" placeholder="Senha">
-            <div id="auth-error" class="auth-error"></div>
-            <button id="btn-login" class="btn-primary">ENTRAR</button>
-            <button id="btn-signup" class="btn-outline">CRIAR CONTA</button>
-        </div>
-    </section>
-
-    <section id="splash-screen" class="screen hidden splash-center">
-        <div class="logo-container mx-auto">
-            <img src="https://i.postimg.cc/4dDyfVJp/Gemini-Generated-Image-ilnjhrilnjhrilnj-removebg-preview.png" alt="Logo Arandu" class="logo-img-splash">
-        </div>
-        <h1 class="app-title playfair text-center">Arandu</h1>
-        <div class="poetic-intro lora">
-            <p>Bem-vindo(a)!</p>
-            <p>Toda árvore alta precisa de raízes profundas. No Arandu, você planta sua dedicação e colhe conhecimento.</p>
+            <p>...dê o próximo passo...</p>
+            <p>Inicie a lapidação do seu saber e contemple a eflorescência da sua própria razão.</p>
         </div>
         <button id="btn-enter" class="btn-primary">SEMEAR</button>
     </section>
 
+    <section id="login-screen" class="screen hidden splash-center">
+        <div class="logo-container mx-auto" style="margin-bottom: -40px;">
+            <img src="https://i.postimg.cc/4dDyfVJp/Gemini-Generated-Image-ilnjhrilnjhrilnj-removebg-preview.png" alt="Logo Arandu" class="logo-img-splash" style="width: 140px; opacity: 0.8;">
+        </div>
+        <h2 class="playfair text-center" style="margin-bottom: 30px; color: var(--text-black); font-size: 2rem;" id="auth-title">Entrar no Jardim</h2>
+        
+        <div class="auth-card">
+            <div class="auth-input-wrapper">
+                <i class="ph ph-envelope-simple input-icon"></i>
+                <input type="email" id="email-input" class="auth-input" placeholder="Seu e-mail">
+            </div>
+            
+            <div class="auth-input-wrapper">
+                <i class="ph ph-lock-key input-icon"></i>
+                <input type="password" id="password-input" class="auth-input" placeholder="Sua senha">
+            </div>
+
+            <div id="auth-error" class="error-msg"></div>
+            
+            <button id="btn-auth-action" class="btn-primary" style="margin-top: 10px;">ENTRAR</button>
+            <span id="btn-toggle-auth" class="auth-toggle-text">Não tem conta? Plante uma agora.</span>
+        </div>
+        
+        <div style="margin-top:40px;">
+            <button onclick="showScreen('splash')" class="lora-small" style="background:none; border:none; text-decoration:none; cursor:pointer; opacity: 0.6;"><i class="ph ph-arrow-left"></i> Voltar ao início</button>
+        </div>
+    </section>
+
     <section id="main-screen" class="screen hidden">
         <header class="main-header">
-            <button id="btn-logout" class="icon-btn-small" title="Sair"><i class="ph ph-sign-out"></i></button>
+            <button id="btn-logout" class="icon-btn" title="Sair do Arandu"><i class="ph ph-door-open"></i></button>
             <div style="flex-grow:1; text-align:center;">
                 <img src="https://i.postimg.cc/PqDBGwFg/Gemini-Generated-Image-adjkvdadjkvdadjk-removebg-preview-(1).png" alt="Logo" class="logo-img-header">
             </div>
@@ -360,11 +381,12 @@
 </main>
 
 <script type="module">
-    // --- FIREBASE CONFIGURATION (GABI) ---
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+    /* --- IMPORTS --- */
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+    /* --- CONFIGURAÇÃO --- */
     const firebaseConfig = {
         apiKey: "AIzaSyDzK2liiOQ5OJkfOgOlodhJTHfatXDVvXw",
         authDomain: "arandu-80890.firebaseapp.com",
@@ -379,7 +401,12 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // --- VARIÁVEIS DO SISTEMA ORIGINAL ---
+    /* --- ESTADO & HARD RESET (Segurança) --- */
+    let currentUser = null;
+    let isAuthReady = false; 
+    let saveTimeout = null;
+    let currentScreenName = 'splash';
+
     const defaultState = {
         blocks: [
             { name: "ENEM e Vestibulares", icon: "ph-book-open-text", folders: [] },
@@ -387,28 +414,24 @@
             { name: "Concursos", icon: "ph-bank", folders: [] }
         ], postIts: [], currentBlockIndex: null, currentFolderIndex: null, currentTopicIndex: null
     };
-    
-    // Agora appState começa vazio e é preenchido pelo Firebase
-    let appState = defaultState;
-    let currentUser = null;
-    let unsubscribeFirestore = null;
 
-    // --- FUNÇÃO "SAVEDATA" MODIFICADA PARA FIREBASE ---
-    async function saveData() {
-        if (!currentUser) return; // Só salva se tiver usuário
-        try {
-            // Salva o JSON inteiro no Firestore (Documento 'userData' na coleção 'users')
-            await setDoc(doc(db, "users", currentUser.uid), { data: JSON.stringify(appState) });
-            // console.log("Salvo na nuvem!");
-        } catch (e) {
-            console.error("Erro ao salvar:", e);
-        }
+    let appState = JSON.parse(JSON.stringify(defaultState));
+
+    function resetAppState() {
+        // Limpa visualmente TUDO para garantir privacidade
+        appState = JSON.parse(JSON.stringify(defaultState));
+        document.getElementById('blocks-grid').innerHTML = '';
+        document.getElementById('mural-container').innerHTML = '';
+        document.getElementById('writing-area').innerText = '';
+        document.getElementById('writing-title').innerText = 'Título';
+        document.getElementById('email-input').value = '';
+        document.getElementById('password-input').value = '';
     }
 
-    // --- GERENCIAMENTO DE TELAS ---
+    /* --- NAVEGAÇÃO --- */
     const screens = { 
-        auth: document.getElementById('auth-screen'),
         splash: document.getElementById('splash-screen'), 
+        login: document.getElementById('login-screen'),
         main: document.getElementById('main-screen'), 
         folders: document.getElementById('folders-screen'), 
         topics: document.getElementById('topics-screen'), 
@@ -416,115 +439,145 @@
     };
     
     function showScreen(name) {
+        currentScreenName = name;
         Object.values(screens).forEach(s => s.classList.add('hidden'));
         screens[name].classList.remove('hidden');
         document.getElementById('search-results').classList.add('hidden'); 
         window.scrollTo(0,0);
     }
-    
     window.goBack = function(target) { 
-        if(target === 'topics') saveData();
+        if(target === 'topics') saveData(true);
         showScreen(target); 
-    };
-
-    // --- LÓGICA DE LOGIN ---
-    const emailInput = document.getElementById('email-input');
-    const passInput = document.getElementById('password-input');
-    const authError = document.getElementById('auth-error');
-    const loadingOverlay = document.getElementById('loading-overlay');
-
-    function toggleLoading(show) {
-        if(show) loadingOverlay.classList.remove('hidden');
-        else loadingOverlay.classList.add('hidden');
     }
+    window.showScreen = showScreen;
 
-    async function handleAuth(isLogin) {
-        const email = emailInput.value;
-        const password = passInput.value;
-        authError.innerText = "";
+    /* --- AUTENTICAÇÃO --- */
+    onAuthStateChanged(auth, async (user) => {
+        isAuthReady = true;
         
-        if(!email || !password) { authError.innerText = "Preencha tudo."; return; }
-        
-        toggleLoading(true);
-        try {
-            if(isLogin) {
-                await signInWithEmailAndPassword(auth, email, password);
-            } else {
-                await createUserWithEmailAndPassword(auth, email, password);
-            }
-        } catch (error) {
-            console.error(error);
-            authError.innerText = "Erro: " + error.code;
-            toggleLoading(false);
-        }
-    }
-
-    document.getElementById('btn-login').onclick = () => handleAuth(true);
-    document.getElementById('btn-signup').onclick = () => handleAuth(false);
-    document.getElementById('btn-logout').onclick = () => {
-        signOut(auth);
-        if(unsubscribeFirestore) unsubscribeFirestore(); // Para de ouvir atualizações
-        showScreen('auth');
-    };
-
-    // --- MONITOR DE USUÁRIO E DADOS EM TEMPO REAL ---
-    onAuthStateChanged(auth, (user) => {
-        toggleLoading(false);
         if (user) {
             currentUser = user;
-            // Ao logar, conecta ao documento do usuário no Firestore
-            // onSnapshot garante que se você mudar no celular, muda no PC na hora
-            unsubscribeFirestore = onSnapshot(doc(db, "users", user.uid), (docSnap) => {
-                if (docSnap.exists()) {
-                    // Carrega os dados da nuvem
-                    const cloudData = docSnap.data().data;
-                    if(cloudData) {
-                        appState = JSON.parse(cloudData);
-                        // Atualiza a UI onde quer que esteja
-                        renderBlocks();
-                        renderPostIts();
-                        // Se estiver na tela de escrita, atualiza o texto (cuidado para não sobrescrever enquanto digita)
-                        if(!document.getElementById('writing-screen').classList.contains('hidden')) {
-                             // Lógica simplificada: não atualiza editor ativo para evitar conflito de digitação
-                        }
-                    }
-                } else {
-                    // Primeiro acesso: Salva o estado padrão
-                    saveData();
-                }
-                
-                // Se estava na tela de auth, vai para splash ou main
-                if(!screens.auth.classList.contains('hidden')) {
-                    showScreen('splash');
-                }
-            });
+            resetAppState(); // Limpa resquícios anteriores
+            await loadUserData();
+            
+            if (currentScreenName === 'login') showScreen('main');
+            updateSemearButtonState();
         } else {
             currentUser = null;
-            showScreen('auth');
+            resetAppState(); // Limpa imediata dos dados do anterior
+            
+            if (currentScreenName === 'main' || currentScreenName === 'writing' || currentScreenName === 'folders' || currentScreenName === 'topics') {
+                showScreen('login');
+            }
+            updateSemearButtonState();
         }
     });
 
-    document.getElementById('btn-enter').onclick = () => { renderBlocks(); renderPostIts(); showScreen('main'); };
+    const btnEnter = document.getElementById('btn-enter');
+    function updateSemearButtonState() {
+        if(currentScreenName === 'splash') {
+            btnEnter.innerText = "SEMEAR";
+            btnEnter.disabled = false;
+        }
+    }
 
-    // --- CÓDIGO ORIGINAL DA GABI (FUNÇÕES DE UI) ---
-    // (Abaixo está exatamente sua lógica, apenas chamando o novo saveData)
+    btnEnter.onclick = () => {
+        if (!isAuthReady) {
+            btnEnter.innerText = "Carregando...";
+            btnEnter.disabled = true;
+            return; 
+        }
+        if (currentUser) showScreen('main');
+        else showScreen('login');
+    };
 
-    /* --- FECHAR TECLADO AO TOCAR FORA --- */
-    const appContainer = document.getElementById('app-container');
-    const closeKeyboard = (e) => {
-        const target = e.target;
-        const isEditable = target.isContentEditable || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA';
-        const isButton = target.closest('button') || target.closest('.icon-btn') || target.closest('.toolbar-btn');
-        if (!isEditable && !isButton) {
-            if(document.activeElement) document.activeElement.blur();
+    /* --- UI LOGIN --- */
+    let isRegistering = false;
+    const emailInput = document.getElementById('email-input');
+    const passInput = document.getElementById('password-input');
+    const authError = document.getElementById('auth-error');
+    const authBtn = document.getElementById('btn-auth-action');
+    const authTitle = document.getElementById('auth-title');
+    const toggleAuth = document.getElementById('btn-toggle-auth');
+
+    toggleAuth.onclick = () => {
+        isRegistering = !isRegistering;
+        authTitle.innerText = isRegistering ? "Criar conta" : "Entrar";
+        authBtn.innerText = isRegistering ? "CRIAR CONTA" : "ENTRAR";
+        toggleAuth.innerText = isRegistering ? "Já tem acesso? Entre aqui." : "Não tem conta? Crie uma agora.";
+        authError.innerText = "";
+    };
+
+    authBtn.onclick = async () => {
+        const email = emailInput.value;
+        const pass = passInput.value;
+        authError.innerText = "Processando...";
+
+        try {
+            if (isRegistering) {
+                await createUserWithEmailAndPassword(auth, email, pass);
+            } else {
+                await signInWithEmailAndPassword(auth, email, pass);
+            }
+        } catch (error) {
+            let msg = "Erro desconhecido.";
+            if(error.code === 'auth/invalid-email') msg = "E-mail inválido.";
+            if(error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') msg = "E-mail ou senha incorretos.";
+            if(error.code === 'auth/wrong-password') msg = "Senha incorreta.";
+            if(error.code === 'auth/email-already-in-use') msg = "Este e-mail já tem um jardim.";
+            if(error.code === 'auth/weak-password') msg = "Senha fraca (min 6 digitos).";
+            authError.innerText = msg;
         }
     };
-    appContainer.addEventListener('mousedown', closeKeyboard);
-    appContainer.addEventListener('touchstart', closeKeyboard);
+    
+    document.getElementById('btn-logout').onclick = () => {
+        if(confirm("Deseja fechar o portão do seu jardim?")) {
+            signOut(auth).then(() => resetAppState());
+        }
+    };
+
+    /* --- DATABASE --- */
+    async function loadUserData() {
+        if (!currentUser) return;
+        try {
+            const docRef = doc(db, "users", currentUser.uid);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                appState = docSnap.data().appData;
+            } else {
+                appState = JSON.parse(JSON.stringify(defaultState)); 
+                await saveData(true); 
+            }
+            renderBlocks();
+            renderPostIts();
+        } catch (error) {
+            console.error("Erro ao carregar:", error);
+            authError.innerText = "Erro de conexão.";
+        }
+    }
+
+    async function saveData(force = false) {
+        if (!currentUser) return;
+        const doSave = async () => {
+            try {
+                await setDoc(doc(db, "users", currentUser.uid), {
+                    appData: appState,
+                    email: currentUser.email,
+                    lastUpdate: new Date()
+                }, { merge: true });
+            } catch (e) { console.error("Erro ao salvar:", e); }
+        };
+        if(force) { await doSave(); } 
+        else { clearTimeout(saveTimeout); saveTimeout = setTimeout(doSave, 2000); }
+    }
 
     /* --- RENDERIZADORES --- */
-    function renderBlocks() {
-        const grid = document.getElementById('blocks-grid'); grid.innerHTML = '';
+    window.renderBlocks = function() {
+        const grid = document.getElementById('blocks-grid'); 
+        grid.innerHTML = '';
+        if(!appState.blocks) return;
+
         appState.blocks.forEach((b, i) => {
             const div = document.createElement('div'); div.className = 'study-block';
             div.innerHTML = `<i class="ph ph-x-circle delete-block-btn"></i><i class="ph ${b.icon} block-icon"></i><span class="lora text-black" style="font-weight:600; font-size:1.1rem; line-height:1.2;">${b.name}</span>`;
@@ -538,8 +591,9 @@
         grid.appendChild(add);
     }
 
-    function renderFolders() {
+    window.renderFolders = function() {
         const list = document.getElementById('folders-list'); list.innerHTML = '';
+        if(!appState.blocks[appState.currentBlockIndex]) return;
         appState.blocks[appState.currentBlockIndex].folders.forEach((f, i) => {
             const el = document.createElement('div'); el.className = 'folder-item';
             el.innerHTML = `<span>${f.name}</span><button class="delete-item-btn"><i class="ph ph-trash"></i></button>`;
@@ -550,15 +604,15 @@
     }
     document.getElementById('btn-add-folder').onclick = () => { const n = prompt("Nome da Matéria:"); if(n){ appState.blocks[appState.currentBlockIndex].folders.push({name:n, topics:[]}); saveData(); renderFolders(); }};
 
-    function renderTopics() {
+    window.renderTopics = function() {
         const list = document.getElementById('topics-list'); list.innerHTML = '';
+        if(!appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex]) return;
         appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics.forEach((t, i) => {
             const el = document.createElement('div'); el.className = 'folder-item';
             el.innerHTML = `<span>${t.name}</span><button class="delete-item-btn"><i class="ph ph-trash"></i></button>`;
             el.onclick = (e) => { if(!e.target.closest('.delete-item-btn')){ 
                 appState.currentTopicIndex=i; 
                 document.getElementById('writing-title').innerText=t.name; 
-                // CARREGA O CONTEÚDO
                 const content = t.content || "";
                 document.getElementById('writing-area').innerHTML = content;
                 togglePlaceholder(); 
@@ -570,11 +624,11 @@
     }
     document.getElementById('btn-add-topic').onclick = () => { const n = prompt("Nome do Tópico:"); if(n){ appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics.push({name:n, content:""}); saveData(); renderTopics(); }};
 
-    /* --- EDITOR & SALVAMENTO AUTOMÁTICO --- */
+    /* --- EDITOR & EXTRAS --- */
     const wArea = document.getElementById('writing-area');
     const placeholder = document.getElementById('placeholder-text');
 
-    function togglePlaceholder() {
+    window.togglePlaceholder = function() {
         placeholder.style.opacity = (wArea.innerText.trim().length > 0) ? '0' : '0.5';
     }
 
@@ -582,207 +636,103 @@
         togglePlaceholder();
         if(appState.currentBlockIndex !== null) {
             appState.blocks[appState.currentBlockIndex].folders[appState.currentFolderIndex].topics[appState.currentTopicIndex].content = wArea.innerHTML;
-            // Salva no Firebase a cada digitação (Debounce seria ideal, mas mantendo simples)
-            saveData();
+            saveData(); 
         }
     });
 
-    /* --- MARCA-TEXTO --- */
     let isHighlight = false;
     const hBtn = document.getElementById('btn-highlight-toggle');
-    
     hBtn.addEventListener('click', (e) => {
-        e.preventDefault(); 
-        isHighlight = !isHighlight;
-        hBtn.classList.toggle('active', isHighlight);
-        
-        if (isHighlight) {
-            document.execCommand('styleWithCSS', false, true);
-            document.execCommand('backColor', false, '#FFF59D');
-        } else {
-            document.execCommand('styleWithCSS', false, true);
-            document.execCommand('backColor', false, 'rgba(0,0,0,0)');
-            // Hack para limpar formatação teimosa
-            document.execCommand('removeFormat', false, 'backColor');
+        e.preventDefault(); isHighlight = !isHighlight; hBtn.classList.toggle('active', isHighlight);
+        if (isHighlight) { document.execCommand('styleWithCSS', false, true); document.execCommand('backColor', false, '#FFF59D'); } 
+        else {
+            document.execCommand('styleWithCSS', false, true); document.execCommand('backColor', false, 'rgba(0,0,0,0)'); document.execCommand('removeFormat', false, 'backColor');
+            const id = "cursor-" + new Date().getTime(); document.execCommand('insertHTML', false, `<span id="${id}" style="background-color: transparent !important; color: inherit; text-decoration: none;">&#8203;</span>`);
+            const span = document.getElementById(id); if (span) { const range = document.createRange(); range.setStart(span, 1); range.setEnd(span, 1); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); span.removeAttribute('id'); }
         }
         wArea.focus();
     });
 
-    /* --- CORRETOR SUTIL --- */
-    const errorMap = {
-        "nao": "não", "voce": "você", "tambem": "também", "eh": "é", "entao": "então",
-        "esta": "está", "estao": "estão", "ja": "já", "ate": "até", "so": "só",
-        "concerteza": "com certeza", "pq": "porque", "vc": "você", "tmb": "também",
-        "dificil": "difícil", "facil": "fácil", "parabens": "parabéns", "ola": "olá"
-    };
+    const errorMap = { "nao": "não", "voce": "você", "tambem": "também", "eh": "é", "entao": "então", "esta": "está", "estao": "estão", "ja": "já", "ate": "até", "so": "só", "concerteza": "com certeza", "pq": "porque", "vc": "você", "tmb": "também", "dificil": "difícil", "facil": "fácil", "parabens": "parabéns", "ola": "olá" };
 
     wArea.addEventListener('click', (e) => {
         const sel = window.getSelection();
         if(sel.isCollapsed && sel.anchorNode.nodeType === 3) {
             const text = sel.anchorNode.textContent;
             const offset = sel.anchorOffset;
-            
             let start = offset, end = offset;
             while(start > 0 && /[\wáàãâéêíóôõúç]/i.test(text[start-1])) start--;
             while(end < text.length && /[\wáàãâéêíóôõúç]/i.test(text[end])) end++;
-            
             const word = text.slice(start, end).toLowerCase();
-            
             if(errorMap[word]) {
-                const range = document.createRange();
-                range.setStart(sel.anchorNode, start);
-                range.setEnd(sel.anchorNode, end);
-                const rect = range.getBoundingClientRect();
-                
-                const tooltip = document.createElement('div');
-                tooltip.className = 'correction-tooltip';
-                tooltip.innerText = errorMap[word]; 
-                tooltip.style.top = (rect.top - 40) + 'px';
-                tooltip.style.left = rect.left + 'px';
-                
-                tooltip.onclick = (ev) => {
-                    ev.stopPropagation();
-                    const before = text.slice(0, start);
-                    const after = text.slice(end);
-                    sel.anchorNode.textContent = before + errorMap[word] + after;
-                    tooltip.remove();
-                    saveData();
-                };
-                
-                document.body.appendChild(tooltip);
-                
-                setTimeout(() => {
-                    document.addEventListener('click', function closer(ev2){
-                        if(ev2.target !== tooltip) { tooltip.remove(); document.removeEventListener('click', closer); }
-                    }, {once:true});
-                }, 100);
+                const range = document.createRange(); range.setStart(sel.anchorNode, start); range.setEnd(sel.anchorNode, end); const rect = range.getBoundingClientRect();
+                const tooltip = document.createElement('div'); tooltip.className = 'correction-tooltip'; tooltip.innerText = errorMap[word]; 
+                tooltip.style.top = (rect.top - 40) + 'px'; tooltip.style.left = rect.left + 'px';
+                tooltip.onclick = (ev) => { ev.stopPropagation(); const before = text.slice(0, start); const after = text.slice(end); sel.anchorNode.textContent = before + errorMap[word] + after; tooltip.remove(); saveData(); };
+                document.body.appendChild(tooltip); setTimeout(() => { document.addEventListener('click', function closer(ev2){ if(ev2.target !== tooltip) { tooltip.remove(); document.removeEventListener('click', closer); } }, {once:true}); }, 100);
             }
         }
     });
 
-    /* --- BUSCA --- */
     document.getElementById('search-input').addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const res = document.getElementById('search-results');
-        
+        const term = e.target.value.toLowerCase(); const res = document.getElementById('search-results');
         if(term.length < 2) { res.classList.add('hidden'); return; }
-        
-        res.innerHTML = ''; 
-        let foundAny = false;
-        
-        appState.blocks.forEach((b, bi) => b.folders.forEach((f, fi) => f.topics.forEach((t, ti) => {
-            const div = document.createElement('div');
-            div.innerHTML = t.content || "";
-            const cleanText = div.innerText; 
-            const lowerText = cleanText.toLowerCase();
-            
+        res.innerHTML = ''; let foundAny = false;
+        if(appState.blocks) appState.blocks.forEach((b, bi) => b.folders.forEach((f, fi) => f.topics.forEach((t, ti) => {
+            const div = document.createElement('div'); div.innerHTML = t.content || ""; const cleanText = div.innerText; const lowerText = cleanText.toLowerCase();
             if(t.name.toLowerCase().includes(term) || lowerText.includes(term)) {
-                foundAny = true; 
-                res.classList.remove('hidden');
-                
-                const item = document.createElement('div'); 
-                item.className = 'search-result-item';
-                
-                let snippet = "Encontrado no título";
-                const index = lowerText.indexOf(term);
-                if(index >= 0) {
-                    const start = Math.max(0, index - 20);
-                    const end = Math.min(cleanText.length, index + term.length + 30);
-                    let rawSnippet = cleanText.slice(start, end);
-                    const regex = new RegExp(`(${term})`, 'gi');
-                    snippet = rawSnippet.replace(regex, '<span class="highlight-match">$1</span>');
-                    snippet = `...${snippet}...`;
-                }
-
-                item.innerHTML = `
-                    <span class="search-result-title">${t.name}</span>
-                    <span class="search-snippet">${snippet}</span>
-                `;
-                
-                item.onclick = () => { 
-                    appState.currentBlockIndex=bi; appState.currentFolderIndex=fi; appState.currentTopicIndex=ti; 
-                    document.getElementById('writing-title').innerText=t.name; 
-                    document.getElementById('writing-area').innerHTML=t.content; 
-                    togglePlaceholder();
-                    showScreen('writing'); 
-                };
+                foundAny = true; res.classList.remove('hidden');
+                const item = document.createElement('div'); item.className = 'search-result-item';
+                let snippet = "Encontrado no título"; const index = lowerText.indexOf(term);
+                if(index >= 0) { const start = Math.max(0, index - 20); const end = Math.min(cleanText.length, index + term.length + 30); let rawSnippet = cleanText.slice(start, end); const regex = new RegExp(`(${term})`, 'gi'); snippet = rawSnippet.replace(regex, '<span class="highlight-match">$1</span>'); snippet = `...${snippet}...`; }
+                item.innerHTML = `<span class="search-result-title">${t.name}</span><span class="search-snippet">${snippet}</span>`;
+                item.onclick = () => { appState.currentBlockIndex=bi; appState.currentFolderIndex=fi; appState.currentTopicIndex=ti; document.getElementById('writing-title').innerText=t.name; document.getElementById('writing-area').innerHTML=t.content; togglePlaceholder(); showScreen('writing'); };
                 res.appendChild(item);
             }
         })));
         if(!foundAny) res.classList.add('hidden');
     });
 
-    /* --- OUTRAS FUNÇÕES --- */
-    document.getElementById('btn-insert-link').onmousedown = (e) => {
-        e.preventDefault();
-        const url = prompt("Cole o link aqui:");
-        if(url) document.execCommand('insertHTML', false, `&nbsp;<a href="${url}" target="_blank" style="color:#0288D1;text-decoration:underline;">🔗 Link</a>&nbsp;`);
-    };
+    document.getElementById('btn-insert-link').onmousedown = (e) => { e.preventDefault(); const url = prompt("Cole o link aqui:"); if(url) document.execCommand('insertHTML', false, `&nbsp;<a href="${url}" target="_blank" style="color:#0288D1;text-decoration:underline;">🔗 Link</a>&nbsp;`); };
+    const speedOptions = [1.0, 1.5, 0.8]; const speedLabels = ['1x', '1.5x', '0.8x']; let speedIndex = 0; let currentSpeed = 1.0;
+    document.getElementById('btn-speed').onclick = function() { speedIndex = (speedIndex + 1) % speedOptions.length; currentSpeed = speedOptions[speedIndex]; this.querySelector('span').innerText = speedLabels[speedIndex]; };
 
-    const speedOptions = [1.0, 1.5, 0.8]; 
-    const speedLabels = ['1x', '1.5x', '0.8x'];
-    let speedIndex = 0;
-    let currentSpeed = 1.0;
-    document.getElementById('btn-speed').onclick = function() {
-        speedIndex = (speedIndex + 1) % speedOptions.length;
-        currentSpeed = speedOptions[speedIndex];
-        this.querySelector('span').innerText = speedLabels[speedIndex];
-    };
-
-    const synth = window.speechSynthesis;
-    let isSpeaking = false;
+    const synth = window.speechSynthesis; let isSpeaking = false;
     document.getElementById('btn-tts-read').onclick = function() {
         if(isSpeaking) { synth.cancel(); isSpeaking = false; return; }
-        const text = wArea.innerText;
-        if(!text.trim()) return;
-        const utterance = new SpeechSynthesisUtterance(text);
-        const ptWords = ['o', 'a', 'e', 'que', 'do', 'da', 'para'];
-        const enWords = ['the', 'and', 'is', 'to', 'of', 'for'];
-        let scorePT = 0, scoreEN = 0;
-        text.toLowerCase().split(/\s+/).forEach(w => {
-            if(ptWords.includes(w)) scorePT++;
-            if(enWords.includes(w)) scoreEN++;
-        });
-        utterance.lang = (scoreEN > scorePT) ? 'en-US' : 'pt-BR';
-        utterance.rate = currentSpeed;
-        utterance.onend = () => isSpeaking = false;
-        synth.speak(utterance);
-        isSpeaking = true;
+        const text = wArea.innerText; if(!text.trim()) return;
+        const utterance = new SpeechSynthesisUtterance(text); utterance.lang = 'pt-BR'; utterance.rate = currentSpeed; utterance.onend = () => isSpeaking = false;
+        synth.speak(utterance); isSpeaking = true;
     };
 
-    const mural = document.getElementById('mural-container');
-    function renderPostIts() {
-        mural.innerHTML = '';
+    window.renderPostIts = function() {
+        const mural = document.getElementById('mural-container'); mural.innerHTML = '';
         (appState.postIts || []).forEach((txt, i) => {
             const el = document.createElement('div'); el.className = 'post-it';
             el.innerHTML = `<button class="delete-postit-btn"><i class="ph ph-x"></i></button><div contenteditable="true" class="lora text-black" style="outline:none; height:100%;">${txt}</div>`;
-            const editDiv = el.querySelector('div');
-            editDiv.oninput = (e) => { appState.postIts[i] = e.target.innerText; saveData(); };
+            const editDiv = el.querySelector('div'); editDiv.oninput = (e) => { appState.postIts[i] = e.target.innerText; saveData(); };
             el.querySelector('button').onclick = () => { appState.postIts.splice(i,1); saveData(); renderPostIts(); };
-            mural.prepend(el);
-            if(txt === "") { setTimeout(() => editDiv.focus(), 100); }
+            mural.prepend(el); if(txt === "") { setTimeout(() => editDiv.focus(), 100); }
         });
     }
     document.getElementById('btn-add-postit').onclick = () => { appState.postIts.unshift(""); saveData(); renderPostIts(); };
 
-    /* --- MANUAL --- */
     const manualPages = [
-        `<h5>Apresentação</h5><p>Saudações! O Arandu é o seu santuário de estudos.</p>`,
-        `<h5>Organização</h5><p>Estruture seu saber em <b>Blocos</b>, <b>Matérias</b> e <b>Tópicos</b>.</p>`,
-        `<h5>Ferramentas</h5><p>Use a <b>Lupa</b>, <b>Marca-Texto</b> e <b>Links</b>.</p>`,
-        `<h5>Nuvem</h5><p>Seus dados são salvos automaticamente no seu e-mail.</p>`,
-        `<h5>Suporte</h5><p>Dúvidas? <a href="mailto:gabrielly.dantastr@gmail.com" style="color:var(--accent-primary);">Enviar E-mail</a>.</p>`
+        `<h5>Apresentação</h5><p>Saudações! O Arandu é o seu santuário de estudos e reflexão. Desfrute deste ambiente concebido para organizar e armazenar as suas ideias.</p>`,
+        `<h5>Segurança</h5><p>Este aplicativo é resiliente e protegido por criptografia. Todavia, o Arandu não se responsabiliza pela veracidade das anotações inseridas,sendo assim, incumbência exclusiva do usuário zelar pela acurácia das informações.</p>`,
+        `<h5>Organização</h5><p>Estruture o seu saber em <b>Blocos</b>, <b>Matérias</b> e <b>Tópicos</b>.</p>`,
+        `<h5>Ferramentas</h5><p>Use a <b>Lupa</b> para vasculhar seu acervo. Dentro do texto, use a opção de leitura (áudio) disponibilizada nos idiomas PT/EN. Na escrita, use o <b>Marca-Texto</b> e insira <b>Links</b>.</p>`,
+        `<h5>Suporte</h5><p>Dúvidas ou Feedback? Entre em contato conosco!.<a href="#" id="email-link" style="color:var(--accent-primary); font-weight:bold;">Enviar E-mail</a>.</p>`
     ];
     let pg = 0;
     function updateManual(){ 
-        document.getElementById('manual-content').innerHTML = manualPages[pg]; 
-        document.getElementById('page-indicator').innerText = `${pg+1} / ${manualPages.length}`; 
+        document.getElementById('manual-content').innerHTML = manualPages[pg]; document.getElementById('page-indicator').innerText = `${pg+1} / ${manualPages.length}`; 
+        const emailLink = document.getElementById('email-link'); if(emailLink) { emailLink.onclick = (e) => { e.preventDefault(); window.location.href = 'mailto:gabrielly.dantastr@gmail.com'; }; }
     }
     document.getElementById('btn-planet').onclick = () => { document.getElementById('manual-modal').classList.remove('hidden'); pg=0; updateManual(); };
     document.getElementById('btn-close-manual').onclick = () => document.getElementById('manual-modal').classList.add('hidden');
     document.getElementById('btn-next-page').onclick = () => { if(pg<manualPages.length-1) { pg++; updateManual(); } };
     document.getElementById('btn-prev-page').onclick = () => { if(pg>0) { pg--; updateManual(); } };
-
 </script>
 </body>
 </html>
