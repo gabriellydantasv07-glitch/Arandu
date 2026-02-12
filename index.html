@@ -686,7 +686,7 @@
                 let snippet = "Encontrado no título"; const index = lowerText.indexOf(term);
                 if(index >= 0) { const start = Math.max(0, index - 20); const end = Math.min(cleanText.length, index + term.length + 30); let rawSnippet = cleanText.slice(start, end); const regex = new RegExp(`(${term})`, 'gi'); snippet = rawSnippet.replace(regex, '<span class="highlight-match">$1</span>'); snippet = `...${snippet}...`; }
                 item.innerHTML = `<span class="search-result-title">${t.name}</span><span class="search-snippet">${snippet}</span>`;
-                item.onclick = () => { appState.currentBlockIndex=bi; appState.currentFolderIndex=fi; appState.currentTopicIndex=ti; document.getElementById('writing-title').innerText=t.name; document.getElementById('writing-area').innerHTML=t.content; togglePlaceholder(); showScreen('writing'); };
+                item.onclick = () => { appState.currentBlockIndex=bi; appState.currentFolderIndex=fi; appState.currentTopicIndex=ti; document.getElementById('writing-title').innerText=t.name; document.getElementById('writing-area').innerHTML=t.content; togglePlaceholder(); showScreen('writing');falarTextoDinamico('writing-area');}; 
                 res.appendChild(item);
             }
         })));
@@ -699,12 +699,9 @@
 
     const synth = window.speechSynthesis; let isSpeaking = false;
     document.getElementById('btn-tts-read').onclick = function() {
-        if(isSpeaking) { synth.cancel(); isSpeaking = false; return; }
-        const text = wArea.innerText; if(!text.trim()) return;
-        const utterance = new SpeechSynthesisUtterance(text); utterance.lang = 'pt-BR'; utterance.rate = currentSpeed; utterance.onend = () => isSpeaking = false;
-        synth.speak(utterance); isSpeaking = true;
-    };
-
+        falarTextoDinamico('writing-area');
+     };
+        
     window.renderPostIts = function() {
         const mural = document.getElementById('mural-container'); mural.innerHTML = '';
         (appState.postIts || []).forEach((txt, i) => {
@@ -719,10 +716,10 @@
 
     const manualPages = [
         `<h5>Apresentação</h5><p>Saudações! O Arandu é o seu santuário de estudos e reflexão. Desfrute deste ambiente concebido para organizar e armazenar as suas ideias.</p>`,
-        `<h5>Segurança</h5><p>Este aplicativo é resiliente e protegido por criptografia. Todavia, o Arandu não se responsabiliza pela veracidade das anotações inseridas,sendo assim, incumbência exclusiva do usuário zelar pela acurácia das informações.</p>`,
+        `<h5>Segurança</h5><p>Este aplicativo é resiliente e protegido por criptografia. Todavia, o Arandu não se responsabiliza pela veracidade das anotações inseridas, sendo assim, incumbência exclusiva do usuário zelar pela acurácia das informações.</p>`,
         `<h5>Organização</h5><p>Estruture o seu saber em <b>Blocos</b>, <b>Matérias</b> e <b>Tópicos</b>.</p>`,
         `<h5>Ferramentas</h5><p>Use a <b>Lupa</b> para vasculhar seu acervo. Dentro do texto, use a opção de leitura (áudio) disponibilizada nos idiomas PT/EN. Na escrita, use o <b>Marca-Texto</b> e insira <b>Links</b>.</p>`,
-        `<h5>Suporte</h5><p>Dúvidas ou Feedback? Entre em contato conosco!.<a href="#" id="email-link" style="color:var(--accent-primary); font-weight:bold;">Enviar E-mail</a>.</p>`
+        `<h5>Suporte</h5><p>Dúvidas ou Feedback? Entre em contato conosco!<a href="#" id="email-link" style="color:var(--accent-primary); font-weight:bold;">Enviar E-mail</a>.</p>`
     ];
     let pg = 0;
     function updateManual(){ 
@@ -732,7 +729,45 @@
     document.getElementById('btn-planet').onclick = () => { document.getElementById('manual-modal').classList.remove('hidden'); pg=0; updateManual(); };
     document.getElementById('btn-close-manual').onclick = () => document.getElementById('manual-modal').classList.add('hidden');
     document.getElementById('btn-next-page').onclick = () => { if(pg<manualPages.length-1) { pg++; updateManual(); } };
-    document.getElementById('btn-prev-page').onclick = () => { if(pg>0) { pg--; updateManual(); } };
+    document.getElementById('btn-prev-page').onclick = () => { if(pg>0) { pg--; updateManual(); } }; 
+
+/* --- FUNÇÃO DE LEITURA INTELIGENTE (ARANDU 2.0) --- */
+function falarTextoDinamico(idElemento) {
+    const elemento = document.getElementById(idElemento);
+    // Pega o texto, seja de um input ou de uma div
+    const texto = elemento.value || elemento.innerText;
+
+    if (!texto.trim()) return; // Se estiver vazio, não faz nada
+
+    // 1. Para a fala anterior para não encavalar
+    window.speechSynthesis.cancel();
+
+    const mensagem = new SpeechSynthesisUtterance(texto);
+
+    // 2. NOVA DINÂMICA: Procura palavras exclusivas do Inglês
+    // Se encontrar "the", "and", "is", "to"... ele muda. Se não, fica em PT.
+    const palavrasIngles = /\b(the|and|is|are|with|you|that|this|for|have|not|what|hello|my)\b/i;
+
+    if (palavrasIngles.test(texto)) {
+        mensagem.lang = 'en-US'; // Detectou inglês
+    } else {
+        mensagem.lang = 'pt-BR'; // Assume Português (mesmo sem acentos)
+    }
+
+    // 3. RECUPERA A VELOCIDADE
+    // Tenta usar a sua variável global 'currentSpeed'. Se der erro, usa 1.0
+    try {
+        if (typeof currentSpeed !== 'undefined') {
+            mensagem.rate = currentSpeed;
+        } else {
+            mensagem.rate = 1.0;
+        }
+    } catch (erro) {
+        mensagem.rate = 1.0;
+    }
+
+    window.speechSynthesis.speak(mensagem);
+}
 </script>
 </body>
 </html>
